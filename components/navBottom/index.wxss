@@ -1,0 +1,20 @@
+/* components/navBottom/index.wxss */
+.container{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 50rpx 2rpx 50rpx;
+  height: 110rpx;
+}
+.item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.item text{
+  font-size: 22rpx;
+  color: #918f8f;
+}

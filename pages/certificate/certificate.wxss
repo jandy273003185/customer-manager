@@ -1,0 +1,4 @@
+/* pages/certificate/certificate.wxss */
+.isHide{
+  display: none;
+}

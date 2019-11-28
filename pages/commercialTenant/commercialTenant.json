@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "commercialTenant-cmp":"/components/commercialTenant/index",
+    "alert-cmp": "/components/alert/index"
+  }
+}

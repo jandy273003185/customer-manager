@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "deal-cmp":"/components/deal/index"
+  }
+}

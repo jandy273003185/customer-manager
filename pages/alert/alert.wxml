@@ -1,0 +1,5 @@
+<!--pages/alert.wxml-->
+<view class="container">
+  <alert-cmp/>
+</view>
+

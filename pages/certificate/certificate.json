@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "certificate-cmp": "/components/certificate/index",
+    "alert-cmp": "/components/alert/index"
+  }
+}

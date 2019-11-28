@@ -1,0 +1,21 @@
+<!--components/checkDetails/index.wxml-->
+<!-- <view class="dialog {{isHide}}">
+  <image src="images/ok.png"/>
+  <text class="title">商户进件资料填写完成</text>
+  <text class="check">请核对是否提交审核</text>
+  <text class="confirm" bindtap="save">仅保存</text>
+  <text class="confirm" bindtap="confirmSubmit">确认提交</text>
+  <text class="cancel" bindtap="cancel">取消</text>
+</view>
+-->
+
+<view class="box {{isHide}}">
+  <view class="dialog">
+    <image src="images/ok.png"/>
+    <view class="title">商户进件资料填写完成</view>
+    <view class="check">请核对是否提交审核</view>
+    <view class="confirm" bindtap="save">仅保存</view>
+    <view class="confirm" bindtap="confirmSubmit">确认提交</view>
+    <view class="cancel" bindtap="cancel">取消</view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "message-cmp":"/components/message/index"
+  }
+}

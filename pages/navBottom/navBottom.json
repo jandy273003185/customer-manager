@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "navBottom-cmp":"/components/navBottom/index"
+  }
+}

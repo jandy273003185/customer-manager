@@ -1,0 +1,80 @@
+/* components/homePage/index.wxss */
+.logo{
+  display: flex;
+  height: 400rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 140rpx;
+}
+.logo image{
+  width: 150rpx;
+  height: 150rpx;
+}
+.logo text{
+  padding: 12rpx;
+  font-size: 30rpx;
+  color: #2c2828;
+}
+
+.loginType{
+  line-height: 80rpx;
+  font-size: 40rpx;
+  padding-left: 30rpx;
+  color:#292626d7;
+  margin-bottom: 50rpx;
+}
+
+.accountNum{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  padding-left: 10rpx;
+  font-size: 32rpx;
+  border:0.1px solid #f6f6f6;
+  margin: 0 30rpx;
+  border-left: none;
+  border-right: none;
+}
+.line{
+  border-top: none;
+}
+.accountNum image{
+  width: 30rpx;
+  height: 30rpx;
+  padding-right: 10rpx;
+}
+.colLine{
+  height: 80rpx;
+  border:0.1px solid #f6f6f6;
+}
+.getVerificationCode{
+  font-size: 32rpx;
+  color: #292626d7;
+  padding-right: 10rpx;
+  background-color: #fff;
+
+}
+button::after{
+  border:none;
+}
+
+.login{
+  margin: 0 auto;
+  width: 90%;
+  margin-top: 100rpx;
+}
+.login button{
+  color: #fff;
+  background-color:#388bff; 
+  font-size: 32rpx;
+}
+
+.loginWay{
+  display: flex;
+  justify-content: center;
+  padding: 30rpx;
+  font-size: 32rpx;
+  color: #292626d7;
+}

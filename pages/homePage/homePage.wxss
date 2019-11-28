@@ -1,0 +1,180 @@
+/* pages/homePage.wxss */
+page{
+  /* overflow: hidden; */
+  overflow-y: hidden;
+}
+.deviceScroll{
+  /* overflow-y:scroll;
+  overflow-x: hidden; */
+  overflow:scroll;
+  /* height: 542rpx; */
+  /* border: 1px solid red; */
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  flex-shrink: 0;
+  height: 100rpx;
+  background-color: #699dd7;
+  padding-top: 40rpx;
+  /* padding-left: 32rpx; */
+}
+.navbar image{
+  width: 50rpx;
+  height: 30rpx;
+}
+.content{
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #f0efef; */
+  background-color: #f0efef;
+  border-radius: 8rpx;
+  width: 230rpx;
+  margin-left: 36rpx;
+}
+.content image{
+  margin: 0 14rpx;
+  width: 40rpx;
+  height: 30rpx;
+}
+.content input{
+  font-size:26rpx;
+}
+
+.isHide,.dateHide{
+  display: none;
+}
+.container-up{
+  background-color: #eeeeee;
+  border: 1px solid #eeeeee;
+}
+
+.jinjian{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #eeeeee;
+  border: 1rpx dashed #699dd7;
+  margin: 30rpx;
+}
+.jinjian image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.jinjian text{
+  color: #699dd7;
+  font-size: 40rpx;
+}
+
+.commercialTenant{
+  background-color: #fff;
+  margin: 30rpx;
+}
+.date{
+  display: flex;
+  justify-content: space-between;
+  color: #9b9797;
+  padding: 12rpx 20rpx 2rpx 20rpx;
+  font-size: 28rpx;
+}
+
+.section__title image{
+  width: 50rpx;
+  height:40rpx;
+}
+.commercialTenantCount,.commercialTenantCount2,.commercialTenantList{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 100rpx;
+  margin: 0 20rpx;
+}
+.line{
+  border:0.1px solid #f6f6f6;
+  border-left: none;
+  border-right: none;
+}
+.commercialTenantCount text,.commercialTenantCount2 text{
+  text-align: center;
+}
+.commercialTenantNum,.commercialTenantText{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.num{
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #222121be;
+}
+.txt{
+  font-size: 26rpx;
+  color: #9b9797;
+}
+
+.commercialTenantHead{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20rpx;
+}
+.line2{
+  width: 31%;
+  height: 1rpx;
+  border:0.1px solid #d6d3d3;
+}
+.commercialTenantHead text{
+  padding: 0 20rpx;
+  color: #353434
+}
+
+.commercialTenantList{
+  padding: 10rpx 0rpx;
+  margin: 0 30rpx;
+  border-top: none;
+}
+.shop{
+  font-size: 32rpx;
+  color: #353434;
+  margin-bottom: 6rpx;
+}
+.time{
+  font-size: 24rpx;
+  color: #9b9797;
+}
+.blue{
+  color: #5f88e2;
+}
+.gray{
+  color: #9b9797;
+}
+.red{
+  color: #e96b6b;
+}
+.green{
+  color: #469275;
+}
+.dateHide{
+  display: none;
+}
+
+.ad_popError{ 
+  background: #de352d; 
+  color: #fff; 
+  height: 70rpx; 
+  line-height: 58rpx; 
+  font-size: 30rpx; 
+  text-align: center; 
+  position: absolute; 
+  left: 0;
+  top: 140rpx; 
+  width: 100%; 
+  z-index:3;
+}

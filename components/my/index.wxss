@@ -1,0 +1,73 @@
+/* components/my/index.wxss */
+page{
+  background-color: #eeeeee;
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  background-color: #699dd7;
+  width: 100%;
+  height: 100rpx;
+  padding-top: 40rpx;
+  padding-left: 36rpx;
+  position: fixed;
+  z-index: 999;
+}
+.navbar text{
+  color: #fff !important;
+  font-size: 38rpx !important;
+}
+
+.top{
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 140rpx;
+}
+.top image{
+  width: 86rpx;
+  height: 86rpx;
+  padding: 22rpx 10rpx 32rpx 22rpx; 
+}
+.company{
+  font-size: 28rpx;
+  color: #3b3b3b;
+}
+.saleman{
+  font-size: 24rpx;
+  color:#aaa8a8;
+}
+
+.middle{
+  background-color: #fff;
+}
+.content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-top: 0.1rpx solid #f6f6f6;
+  margin: 0 24rpx;
+  padding: 26rpx 24rpx;
+  font-size: 28rpx;
+  color: #3b3b3b;
+}
+.content image{
+  width: 20rpx;
+  height: 16rpx;
+  transform: rotate(90deg);
+}
+.tel{
+  color: #aaa8a8;
+  padding-right: 30rpx;
+  font-size: 26rpx;
+}
+
+button{
+  margin-top: 180rpx;
+  font-size: 28rpx;
+  width: 94%;
+  background-color: #e4e4e4;
+  color: #fff;
+}

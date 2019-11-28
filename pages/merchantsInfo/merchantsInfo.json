@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "merchantsInfo-cmp": "/components/merchantsInfo/index",
+    "alert-cmp": "/components/alert/index"
+  }
+}

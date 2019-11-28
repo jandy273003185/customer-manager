@@ -1,0 +1,113 @@
+<!--components/billingInfo/index.wxml-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+
+<view class="top">
+  <view class="top-item">
+    <view class="top-item-num">1</view>
+    <view class="top-item-txt">基本信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">2</view>
+    <view class="top-item-txt">法人信息</view>
+  </view>
+  <view class="top-item three">
+    <view class="top-item-num">3</view>
+    <view class="top-item-txt">结算信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">4</view>
+    <view class="top-item-txt">签约产品</view>
+  </view>
+</view>
+
+<view class="middle">
+  <view class="middle-item line">
+    <view class="middle-item-title"><span style="color:red">*</span>银行卡号</view>
+    <input value="{{bankNo}}" placeholder="请输入银行卡号" placeholder-style="color:#ccc;" bindblur="bankNo"/>
+  </view>
+  <view class="middle-item line">
+    <view class="middle-item-title"><span style="color:red">*</span>开户银行</view>
+    <!-- <input value="{{bankName}}" disabled="true" placeholder="请输入开户银行" placeholder-style="color:#ccc;" bindinput="bankName"/> -->
+    <view class="section">
+      <picker bindchange="bankChange" range='{{bankArr}}' value='{{bankIndex}}' range-key="bankName"  data-bankCode="{{bankArr[bankIndex].bankCode}}">
+          <view class="picker">
+            <text>{{bankArr[bankIndex].bankName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+    </view>
+  </view>
+  <!-- <view class="middle-item line">
+    <view>网点号</view>
+    <input placeholder="请输入网点号或联行号" placeholder-style="color:#ccc;"/>
+  </view> -->
+  <view class="middle-item line">
+    <view class="middle-item-title"><span style="color:red">*</span>开户省份</view>
+    <view class="section">
+      <picker bindchange="provinceChange" data-bankProvinceId="{{provinceArr[provinceIndex].bankProvinceId}}" range='{{provinceArr}}' value='{{provinceIndex}}' range-key="bankProvinceName" >
+          <view class="picker"> 
+            <text>{{provinceArr[provinceIndex].bankProvinceName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+    </view>
+  </view>
+  <view class="middle-item line">
+    <view class="middle-item-title"><span style="color:red">*</span>开户城市</view>
+    <view class="section">
+      <picker bindchange="cityChange" data-bankCityId="{{cityArr[cityIndex].bankCityId}}" range='{{cityArr}}' value='{{cityIndex}}' range-key="bankCityName" >
+          <view class="picker"> 
+            <text>{{cityArr[cityIndex].bankCityName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+    </view>
+  </view>
+  <view class="middle-item line">
+    <view class="middle-item-title"><span style="color:red"></span>开户支行</view>
+    <!-- <input value="{{bankNameSub}}" placeholder="请输入开户支行" placeholder-style="color:#ccc;" bindinput="bankNameSub"/> -->
+    <view class="section">
+      <picker bindchange="bankSubChange" data-branchBankCode="{{bankSubArr[bankSubIndex].branchBankCode}}" range='{{bankSubArr}}' value='{{bankSubIndex}}' range-key="branchBankName" >
+          <view class="picker"> 
+            <text>{{bankSubArr[bankSubIndex].branchBankName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+    </view>
+  </view>
+  <view class="middle-item line">
+    <view class="middle-item-title"><span style="color:red">*</span>开户人</view>
+    <input value="{{accountName}}" placeholder="请输入开户人" placeholder-style="color:#ccc;" bindblur="accountName"/>
+  </view>
+   <view class="middle-item line">
+    <view class="middle-item-title"><span style="color:red">*</span>结算类型</view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{billingTypeArr}}">
+      <view class="picker">
+        {{billingTypeArr[index]}}
+        <image class='select_img' src='images/arrow-down.png'/>
+      </view>
+    </picker>
+  </view>
+  <!-- <view class="middle-item line">
+    <view>结算费率</view>
+    <input placeholder="请输入费率 %" placeholder-style="color:#ccc;"/>
+  </view> -->
+</view>
+<view class="business-license">
+  <text class="business-license-txt">{{photoType}}照片</text>
+  <view class="icardidentityCard" bindtap="chooseimage">
+    <image class="{{uploadImg}}" src="{{tempFilePaths }}" catchTap="chooseImageTap" mode="aspectFit"/>
+    <view wx:if="{{uploadTxt}}">上传{{photoType}}</view>
+  </view>
+</view>
+
+<button class="next" bindtap="nextFun">下一步</button>
+<view class="back" bindtap="back">返回</view>
+
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+
+
+

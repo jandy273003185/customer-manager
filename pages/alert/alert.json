@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "alert-cmp":"/components/alert/index"
+  }
+}

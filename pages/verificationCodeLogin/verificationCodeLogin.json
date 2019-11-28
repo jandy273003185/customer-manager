@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "verificationCodeLogin-cmp":"/components/verificationCodeLogin/index"
+  }
+}

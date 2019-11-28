@@ -1,0 +1,31 @@
+<!--components/my/index.wxml-->
+<view class="navbar">
+  <text>{{title}}</text>
+</view>
+
+<view class="top">
+  <image src="images/person.png"/>
+  <view class="info">
+    <view class="company">七月有风有限公司</view>
+    <view class="saleman">业务员: 小高</view>
+  </view>
+</view>
+
+<view class="middle">
+  <view class="content">
+    <view>修改登录密码</view>
+    <image src="images/arrow.png"/>
+  </view>
+  <view class="content">
+    <view>关于</view>
+    <image src="images/arrow.png"/>
+  </view>
+  <view class="content">
+    <view>联系客服</view>
+    <text class="tel">400-633-0707</text>
+  </view>
+</view>
+
+<button>退出</button>
+
+

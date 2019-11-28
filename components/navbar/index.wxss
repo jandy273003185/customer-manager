@@ -1,0 +1,17 @@
+/* components/navbar/index.wxss */
+.navbar{
+  display: flex;
+  align-items: center;
+  background-color: #699dd7;
+  height: 86rpx;
+  padding-top: 40rpx;
+  padding-left: 10rpx;
+}
+.navbar image{
+  width: 22rpx;
+  height: 30rpx;
+  padding: 0 20rpx;
+}
+.navbar text{
+  color: #ffffffe8;
+}

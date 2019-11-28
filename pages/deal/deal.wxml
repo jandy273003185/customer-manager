@@ -1,0 +1,5 @@
+<!--pages/deal.wxml-->
+<view class="container">
+  <deal-cmp id="deal"/>
+</view>
+

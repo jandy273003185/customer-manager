@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "accountLogin-cmp":"/components/accountLogin/index"
+  }
+}

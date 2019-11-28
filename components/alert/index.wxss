@@ -1,0 +1,62 @@
+/* components/alert/index.wxss */
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 888;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+}
+.dialog{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10rpx;
+  width: 92%;
+  padding-top: 40rpx;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translateX(-50%) translateY(-50%);
+  -ms-transform:translateX(-50%) translateY(-50%);
+  -moz-transform:translateX(-50%) translateY(-50%);
+  -webkit-transform:translateX(-50%) translateY(-50%);
+  -o-transform:translateX(-50%) translateY(-50%);
+}
+.dialog image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.title{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #222222;
+}
+.check{
+  margin:4rpx 0 30rpx 0;
+  color: #929292;
+  font-size: 28rpx;
+}
+.confirm,.cancel{
+  border-top: 0.1rpx solid #f6f6f6;
+  text-align: center;
+  width: 86%;
+  padding: 22rpx;
+  font-size: 30rpx;
+  color: #222222;
+  margin: 0 20rpx;
+}
+.cancel{
+  color: #929292;
+}
+.hide{
+  display: none;
+} 
+
+  

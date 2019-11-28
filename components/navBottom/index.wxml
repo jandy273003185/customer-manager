@@ -1,0 +1,20 @@
+<!--components/navBottom/index.wxml-->
+<view class="container">
+  <view class="item">
+    <image src="images/ok.png"/>
+    <text>主页</text>
+  </view>
+  <view class="item">
+    <image src="images/ok.png"/>
+    <text>商户</text>
+  </view>
+  <view class="item">
+    <image src="images/ok.png"/>
+    <text>交易</text>
+  </view>
+ <view class="item">
+    <image src="images/ok.png"/>
+    <text>我的</text>
+  </view>
+</view>
+

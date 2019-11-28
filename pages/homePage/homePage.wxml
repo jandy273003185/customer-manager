@@ -1,0 +1,74 @@
+<!--pages/login.wxml-->
+<view class="navbar">
+  <!-- <image src="/images/message.png" bindtap="message"/> -->
+  <view class="content">
+    <image src="/images/search.png"/>
+    <input value="" placeholder="搜索商户名称" placeholder-style="color:#aca9a9;" bindtap="search"/>
+  </view>
+</view>
+
+<view class="container">
+  <view class="container-up">
+  <view class="jinjian" bindtap="searchCommercialTenant">
+    <image src="images/jinjian.png"></image>
+    <text>商户进件</text>
+  </view>
+  <view class="commercialTenant">
+    <view class="date">
+      <text>{{date}}</text>
+      <view class="section">
+        <picker mode="" value="{{date}}" start="" end="" bindtap="dateAlert">
+          <view class="picker">
+            <view class="section__title"><image src="images/date.png"/></view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="commercialTenantCount line">
+      <view class="commercialTenantNum">
+        <text class="num">{{countArr[0].commercialNum}}</text> 
+        <text class="txt">进件商户数</text>
+      </view>
+      <view class="commercialTenantText">
+        <text class="num">{{countArr[0].passingRateNum}}</text> 
+        <text class="txt">开通商户数</text>
+      </view>
+    </view>
+    <view class="commercialTenantCount2">
+      <view class="commercialTenantNum">
+        <text class="num">{{countArr[0].transactionNum}}</text> 
+        <text class="txt">交易笔数(笔)</text>
+      </view>
+      <view class="commercialTenantText">
+        <text class="num">{{countArr[0].transactionAmount}}</text> 
+        <text class="txt">交易金额(元)</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="commercialTenantHead">
+   	<view class="line2"></view>
+   	<text>商户进件情况</text>
+   	<view class="line2"></view>
+  </view>
+</view>
+
+<scroll-view  style ="height:{{warpHeight}};" scroll-y ="true" bindscrolltolower="loadMore" class='deviceScroll'> 
+  <view class="commercialTenantList line" wx:for="{{listArr}}" wx:key="{{index}}" data-status="{{item.state}}" bindtap="onStatus" data-custid="{{item.custId}}">
+    <view class="commercialTenantNum">
+      <text class="shop">{{item.custName}}</text> 
+      <text class="time">{{item.createTime}}</text>
+    </view>
+    <view class='commercialTenantText'>
+      <view class='{{  item.state=="审核通过"?"green":""||item.state=="审核中"?"blue":""||item.state=="待完善"?"gray":""||item.state=="待审核"||""?"gray":""||item.state=="审核失败"?"red":""}}'>{{item.state}}</view>
+    </view>
+  </view>
+</scroll-view>
+
+  <block wx:if="{{dateHide}}"><alertDate-cmp data-date="{{date}}"  bind:myEvent="cancelDate"  bind:myEvent2="confirmDate"/></block>
+  
+</view>
+
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+
+

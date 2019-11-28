@@ -1,0 +1,6 @@
+<!--pages/merchantsInfo/merchantsInfo.wxml-->
+<view class="container">
+  <merchantsInfo-cmp custId="{{custId}}" pageName="{{pageName}}" bind:alertEvent="alertShow"/>
+  <block wx:if="{{isHide}}"><alert-cmp bind:myevent2="alertShow2" bind:myEvent="errorHint" bind:myRefresh="refresh"/></block>
+</view>
+

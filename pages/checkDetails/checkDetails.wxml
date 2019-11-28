@@ -1,0 +1,5 @@
+<!--pages/checkDetails.wxml-->
+<view class="container">
+  <checkDetails-cmp custId="{{custId}}"/>
+</view>
+

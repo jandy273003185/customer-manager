@@ -1,0 +1,4 @@
+<!--pages/navbar/navbar.wxml-->
+<view>
+  <navbar-cmp/>
+</view>

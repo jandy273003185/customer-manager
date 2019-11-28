@@ -1,0 +1,37 @@
+<!--components/message/index.wxml-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+
+<view class="content">
+  <view wx:for="{{arr}}" wx:for-item="item" wx:key="">
+    <view class="msgList line" bindtap="examine" data-name='{{item.name}}'>
+      <view class="left">
+        <view class="shopMsg">
+            <image class="img" src="images/message.png"/>
+            <view class="circle {{item.isShow2?'hide':'show'}}"><image class="circle-img" src="images/circle.png"/></view>
+        </view>
+      </view>
+      <view class="right">
+        <view class="right-up">
+          <view class="shopName">
+            <text class="shop">{{item.name}}</text>
+            <text class="time">{{item.date}}</text>
+          </view>
+          <view class="arrow"><image class="arrow-img" src="{{item.arrow}}"/></view>
+        </view>
+        <view class="details {{item.isShow?'show':'hide'}}">{{item.detail}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bg {{isHide}}">
+  <image src="images/bg.png"/>
+  <text>没有相关消息</text>
+</view>
+
+
+
+

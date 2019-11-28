@@ -1,0 +1,5 @@
+<!--pages/billingInfo/billingInfo.wxml-->
+<view class="container">
+  <billingInfo-cmp/>
+</view>
+

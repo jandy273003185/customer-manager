@@ -1,0 +1,157 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.4",
+	"appid": "wx5abd0aafbd88ce54",
+	"projectname": "customer-manager",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "签约产品",
+					"pathName": "pages/certificate/certificate",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "搜索商户名称",
+					"pathName": "pages/searchCommercialTenant/searchCommercialTenant",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "商户",
+					"pathName": "pages/commercialTenant/commercialTenant",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "交易",
+					"pathName": "pages/deal/deal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "主页",
+					"pathName": "pages/homePage/homePage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "弹出日期",
+					"pathName": "pages/alertDate/alertDate",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "基本信息",
+					"pathName": "pages/merchantsIntoPieces/merchantsIntoPieces",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "消息通知",
+					"pathName": "pages/message/message",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "结算信息",
+					"pathName": "pages/billingInfo/billingInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "法人信息",
+					"pathName": "pages/legalPerson/legalPerson",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/my",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "账号密码登录",
+					"pathName": "pages/accountLogin/accountLogin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商户信息",
+					"pathName": "pages/merchantsInfo/merchantsInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提交",
+					"pathName": "pages/alert/alert",
+					"scene": null
+				}
+			]
+		}
+	}
+}

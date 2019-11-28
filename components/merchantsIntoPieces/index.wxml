@@ -1,0 +1,140 @@
+<!--components/merchantsIntoPieces/index.wxml-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+
+<view class="top">
+  <view class="top-item first">
+    <view class="top-item-num">1</view>
+    <view class="top-item-txt">基本信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">2</view>
+    <view class="top-item-txt">法人信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">3</view>
+    <view class="top-item-txt">结算信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">4</view>
+    <view class="top-item-txt">签约产品</view>
+  </view>
+</view>
+
+<view class="middle">
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>商户账号</view>
+    <input placeholder="请输入手机号" placeholder-style="color:#ccc;" value="{{mobileEmail}}" bindblur="mobileEmail"/>
+  </view>
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>商户类型</view>
+    <picker bindchange="bindPickerChange" value="{{typeIndex}}" range="{{merchantsTypeArr}}">
+      <view class="picker">
+        {{merchantsTypeArr[typeIndex]}}
+        <image class='select_img' src='images/arrow-down.png'/>
+      </view>
+    </picker>
+  </view>
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>商户名称</view>
+    <input placeholder="请输入商户名称" value="{{merchantsName}}" placeholder-style="color:#ccc;"    bindinput="merchantsName"/>
+  </view>
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>商户简称</view>
+    <input placeholder="请输入商户简称" value="{{abbreviation}}" placeholder-style="color:#ccc;" bindinput="abbreviation"/>
+  </view>
+  <!-- <view class="middle-item line">
+    <view>商户邮箱</view>
+    <input placeholder="请输入商户邮箱" placeholder-style="color:#ccc;"/>
+  </view> -->
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>客服号码</view>
+    <input placeholder="请输入客服号码" value="{{tel}}" placeholder-style="color:#ccc;" bindblur="tel"/>
+  </view>
+
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>商户地址</view>
+    <view class="section">
+      <!-- <view class="section__title">省市区选择器</view> -->
+      <!-- <picker mode="selector" bindchange="bindRegionChange" value="{{index}}" range="{{addressArr}}" rang-key="provinceName">
+        <view class="picker">
+          <view class="selectAddress {{defaultAddress}}">
+            <input value="{{addressArr[index].provinceName}}"/>
+            <image class='select_img' src='images/arrow-down.png'/>
+             <text></text>
+            <image class='select_img' src='images/arrow-down.png'/>
+             <text></text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+        </view>
+      </picker> -->
+      <picker bindchange="provinceChange" data-provinceId="{{provinceArr[provinceIndex].provinceId}}" range='{{provinceArr}}' value='{{provinceIndex}}' range-key="provinceName" >
+          <view class="picker"> 
+            <text>{{provinceArr[provinceIndex].provinceName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+      <picker bindchange="cityChange" data-cityId="{{cityArr[cityIndex].cityId}}" range='{{cityArr}}' value='{{cityIndex}}' range-key="cityName" >
+          <view class="picker"> 
+            <text>{{cityArr[cityIndex].cityName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+      <picker bindchange="areaChange" data-areaId="{{areaArr[areaIndex].areaId}}" range='{{areaArr}}' value='{{areaIndex}}' range-key="areaName" >
+          <view class="picker"> 
+            <text>{{areaArr[areaIndex].areaName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+    </view>
+  </view>
+  <view class="middle-item line">
+    <view></view>
+    <input placeholder="请输入详细地址" value="{{address}}" placeholder-style="color:#ccc;" bindinput="address"/>
+  </view>
+  <view class="middle-item line {{typeIndex == 0 ? 'typeHide':''}}">
+    <view><span style="color:red">*</span>营业执照编号</view>
+    <input placeholder="请输入编号" value="{{code}}" placeholder-style="color:#ccc;" bindinput="code"/>
+  </view>
+  <view class="middle-item line yyDate {{typeIndex == 0 ? 'typeHide':''}}">
+    <view><span style="color:red">*</span>营业执照截止期</view>
+    <view class="section">
+        <!-- <picker mode="date" value="{{startDate}}" start="" end="" bindchange="bindDateChange">
+          <view class="picker">
+            <view class="section__title {{date}}">{{startDate}}</view>
+          </view>
+        </picker>
+        <view class="row-line">-</view> -->
+        <picker mode="date" value="{{endDate}}" start="" end="" bindchange="bindDateChange2">
+          <view class="picker">
+            <view class="section__title {{date2}}">{{endDate}}</view>
+          </view>
+        </picker>
+        <view class="page__bd" bindtap="onRadio">
+          <view class="section section_gap">
+            <radio class="radio"  checked="{{checked}}"  bindchange="radioChange">
+                <!-- <text>{{radioVal}}</text> -->
+            </radio>
+          </view>
+          长期
+        </view>
+      </view>
+  </view>
+</view>
+
+<view class="photoView">
+  <view class="photo {{(index == 0 && typeIndex == 0) ? 'typeHide' : ''}}"  wx:for="{{photoArr}}" wx:key="{{index}}"  data-index="{{index}}">
+    <text class="photo-txt"><text wx:if="{{index == 2}}" style="color:red">*</text>{{item.photoTitle}}</text>
+    <view class="photo-content" bindtap="chooseimage" data-index="{{index}}">
+      <image class="{{item.uploadImg}}" src="{{item.photoImg}}" catchTap="chooseImageTap" mode="aspectFit"/>
+      <view wx:if="{{item.photoTxt}}">{{item.photoTxt}}</view>
+    </view>
+  </view>
+</view>
+
+<button class="next" bindtap="nextFun">下一步</button>
+
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+

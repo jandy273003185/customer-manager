@@ -1,0 +1,51 @@
+<!--components/homePage/index.wxml-->
+<view class="logo">
+  <image src="/images/logo.png"/>
+  <text>七分钱客户经理</text>
+</view>
+ 
+<view class="loginType">
+  <text>账号密码登录</text>
+</view>
+
+<view class="accountNum">
+  <input bindinput="isAccountAvailable" placeholder="请输入账号" value="{{mobileValue}}" placeholder-style="color:#ccc;"/>
+  <image bind:tap="clearMobileInput" src="/images/clear.png"/>
+</view>
+<view class="accountNum line">
+  <input type="password" placeholder="请输入登录密码" value="{{pwdValue}}" placeholder-style="color:#ccc;" bindinput="isPwdAvailable"/>
+  <image bind:tap="clearPwdInput" src="/images/clear.png"/>
+</view>
+
+<!-- <view class="pwd">
+  <view>
+    <checkbox></checkbox>
+    <text class="txt">记住密码</text>
+  </view>
+  <view class="txt">
+    <text>找回密码</text>
+  </view>
+</view> -->
+
+<view class="login">
+  <button disabled="{{isDisabled}}" bind:tap="bindClick">绑定</button>
+</view>
+
+<!-- <view class="loginWay" bind:tap="verificationCodeLogin">短信验证码登录</view> -->
+<view class="box {{hide}}">
+  <view class="dialog">
+    <view class="title">微信授权</view>
+    <view><image class="logo2" src="/images/logo.png"/></view>
+    <view class="apply">七分钱客户经理 申请获得以下权限</view >
+    <view class="content">
+      <view class="circle"></view>
+      <view class="content-txt">获得你的公开信息(昵称、头像、地区、及性别)</view>
+    </view >
+    <view class="confirmView">
+      <!-- <text class="cancel" bindtap="cancel">拒绝</text> -->
+      <navigator class="cancel" open-type="exit" target="miniProgram">拒绝</navigator>
+      <text class="confirm" bindtap="confirmSubmit">允许</text>
+    </view> 
+  </view>
+</view>
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>

@@ -1,0 +1,22 @@
+<!--components/checkDetails/index.wxml-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+
+<view class="top">
+  <image src="images/deFeated.png"/>
+  <text class="title">审核失败原因</text>
+  <text class="time">{{time}}</text>
+  <text class="details" wx:for="{{details}}" wx:key="" data-index="{{index}}">{{details[index]}}</text>
+</view>
+
+<button class="next" bindtap="updateInfo">更新资料</button>
+<view class="back" bindtap="back">返回</view>
+
+
+
+
+
+
+

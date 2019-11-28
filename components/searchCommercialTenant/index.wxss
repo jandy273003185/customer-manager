@@ -1,0 +1,132 @@
+/* components/searchCommercialTenant/index.wxss */
+page{
+  background-color: #eeeeee;
+  overflow-y: hidden;
+}
+.deviceScroll{
+  overflow:scroll;
+  /* height: 500rpx; */
+  /* border: 1px solid red; */
+}
+.navbar{
+  display: flex;
+  align-items: center;
+  background-color: #699dd7;
+  width: 100%;
+  height: 100rpx;
+  padding-top: 40rpx;
+  padding-left: 10rpx;
+  position: fixed;
+  z-index: 999;
+}
+.navbar image{
+  width: 22rpx;
+  height: 32rpx;
+  padding: 8rpx 20rpx 0 20rpx;
+}
+.navbar text{
+  color: #fff !important;
+  font-size: 38rpx !important;
+}
+
+.container-up{
+  position: fixed;
+  z-index: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 140rpx;
+}
+.searchImg{
+  z-index: 7;
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  left: 52rpx;
+  top: 186rpx;
+}
+.container-up input{
+  z-index: 6;
+  width: 82%;
+  height: 60rpx;
+  background-color: #eeeeee;
+  border-radius: 10rpx;
+  padding-left: 70rpx;
+}
+.clear{
+  z-index: 8;
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  left: 678rpx;
+  top: 186rpx;
+}
+
+.deviceScroll{
+  padding-top: 276rpx;
+}
+.commercialTenantList{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 30rpx;
+  border-top: 0.1px solid #f6f6f6;
+  background-color: #fff;
+}
+.commercialTenantNum{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.shop{
+  width: 520rpx;
+  font-size: 32rpx;
+  color: #353434;
+  margin-bottom: 6rpx;
+}
+.time{
+  font-size: 24rpx;
+  color: #9b9797;
+}
+
+.bg{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.bg image{
+  padding: 100rpx 0 40rpx 50rpx;
+  width: 300rpx;
+  height: 200rpx;
+}
+.bg text{
+  font-size: 28rpx;
+  color: #817f7f;
+}
+.hide,.isHide{
+  display: none;
+}
+.blue{
+  color: #5f88e2;
+}
+.gray{
+  color: #9b9797;
+}
+.red{
+  color: #e96b6b;
+}
+.green{
+  color: #469275;
+}
+.loaded{
+  display: flex;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #929292;
+  padding: 10rpx 0 20rpx 0;
+}

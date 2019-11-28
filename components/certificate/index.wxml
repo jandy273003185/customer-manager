@@ -1,0 +1,63 @@
+<!--components/certificate/index.wxml-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view> 
+
+<view class="top">
+  <view class="top-item">
+    <view class="top-item-num">1</view>
+    <view class="top-item-txt">基本信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">2</view>
+    <view class="top-item-txt">法人信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">3</view>
+    <view class="top-item-txt">结算信息</view>
+  </view>
+  <view class="top-item four">
+    <view class="top-item-num">4</view>
+    <view class="top-item-txt">签约产品</view>
+  </view>
+</view>
+
+<view class="productTitle">签约产品</view>
+<view class="productList">
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox {{item.productId == 8? 'sn':''}}" wx:for="{{productArr}}" wx:key="">
+        <checkbox value="{{item.productId}}" checked="{{item.checked}}"/>{{item.name}}
+    </label>
+  </checkbox-group>
+  <view class="snDisplay"><input class="rateVal snVal" value="{{sn}}" placeholder="请输入蜻蜓设备编号SN" placeholder-style="color:#ccc" bindinput="snInput"/></view>
+  <view class="rateView rateMargin">
+    <view class="rate">结算费率：</view>
+    <input type="number" class="rateVal" value="{{rate}}" bindinput="rate"/><text class="rate2">%</text>
+  </view>
+  <view class="rateView rateMargin2">
+    <view class="rate">结算费率：</view>
+    <input type="number" class="rateVal" value="{{rate2}}" bindinput="rate2"/><text class="rate2">%</text>
+  </view>
+  <view class="rateView rateMargin3">
+    <view class="rate">结算费率：</view>
+    <input type="number" class="rateVal" value="{{rate3}}" bindinput="rate3"/><text class="rate2">%</text>
+  </view>
+  <!-- <view><input style="position:absolute;margin-top:50rpx;" value="{{rate}}" bindinput="rate"/></view> -->
+</view>
+
+<!-- <view class="further">补充资料</view>
+<view class="photo" wx:for="{{photoArr}}" wx:key="">
+  <text class="photo-txt">{{item.photoTitle}}(<text class="red">必需</text>)</text>
+  <view class="photo-content" bindtap="chooseimage" data-index="{{index}}">
+    <image class="{{item.uploadImg}}" src="{{item.photoImg}}" catchTap="chooseImageTap" mode="aspectFit"/>
+    <view wx:if="{{item.photoTxt}}">{{item.photoTxt}}</view>
+  </view>
+</view> -->
+
+<button class="next" bindtap="submitFun">提交</button>
+<view class="back" bindtap="back">返回</view>
+
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+
+

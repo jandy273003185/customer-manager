@@ -1,0 +1,85 @@
+<!--components/legalPerson/index.wxml-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+
+<view class="top">
+  <view class="top-item">
+    <view class="top-item-num">1</view>
+    <view class="top-item-txt">基本信息</view>
+  </view>
+  <view class="top-item second">
+    <view class="top-item-num">2</view>
+    <view class="top-item-txt">法人信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">3</view>
+    <view class="top-item-txt">结算信息</view>
+  </view>
+  <view class="top-item">
+    <view class="top-item-num">4</view>
+    <view class="top-item-txt">签约产品</view>
+  </view>
+</view>
+
+<view class="middle">
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>法人名字</view>
+    <input value="{{representativeName}}" placeholder="请输入法人名字" placeholder-style="color:#ccc;" bindblur="representativeName"/>
+  </view>
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>法人身份证号码</view>
+    <input value="{{iDcard}}" placeholder="请输入身份证号码" placeholder-style="color:#ccc;" bindblur="iDcard"/>
+  </view>
+  <!-- <view class="middle-item line yyDate">
+    <view><span style="color:red">*</span>身份证有效期</view>
+    <view class="section">
+        <picker mode="date" value="{{startDate}}" start="" end="{{endDate}}" bindchange="bindDateChange">
+          <view class="picker">
+            <view class="section__title {{date}}">{{startDate}}</view>
+          </view>
+        </picker>
+        <view class="row-line">-</view><input hidden="true" value="{{endDate2}}"/>
+        <picker mode="date" value="{{endDate}}" start="{{startDate}}" end="" bindchange="bindDateChange2">
+          <view class="picker">
+            <view class="section__title {{date2}}">{{endDate}}</view>
+          </view>
+        </picker>
+        <view class="page__bd" bindtap="onRadio">
+          <view class="section section_gap">
+            <radio class="radio"  checked="{{checked}}"  bindchange="radioChange">
+            </radio>
+          </view>
+          长期
+        </view>
+      </view>
+  </view> -->
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>联系人名字</view>
+    <input value="{{name}}" placeholder="请输入联系人名字" placeholder-style="color:#ccc;" bindblur="nameVerifycation"/>
+  </view>
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>联系人手机</view>
+    <input type="number" value="{{mobile}}" placeholder="请输入联系人手机" placeholder-style="color:#ccc;" bindblur="mobile"/>
+  </view>
+</view>
+<view class="business-license">
+  <text class="business-license-txt">法人身份证照片</text>
+  <view>
+    <view class="icardidentityCard" bindtap="chooseimage">
+      <image class="{{uploadImg}}" src="{{tempFilePaths }}" catchTap="chooseImageTap" mode="aspectFit"/>
+      <text wx:if="{{uploadTxt}}">上传身份证正面</text>
+    </view>
+    <view class="icardidentityCard2" bindtap="chooseimage2">
+      <image class="{{uploadImg2}}" src="{{tempFilePaths2 }}" catchTap="chooseImageTap" mode="aspectFit"/>
+      <text wx:if="{{uploadTxt2}}">上传身份证反面</text>
+    </view>
+  </view>
+</view>
+<button class="next" bindtap="nextFun">下一步</button>
+<view class="back" bindtap="back">返回</view>
+
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+
+

@@ -1,0 +1,156 @@
+<!--components/merchantsInfo/index.wxml-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+
+<view class="merchants">
+  <view class="merchantsTitle {{index==idx?'active':''}}" wx:for="{{infoTitle}}" wx:key="" data-index="{{index}}" bindtap='onTitle'>{{item.name}}</view>
+</view>
+
+<!-- 商户基本信息 -->
+<view class="info {{idx == 0?'':'isHide'}}">
+  <view class="middle">
+    <view class="middle-item line">
+    <view><span style="color:red">*</span>商户账号</view>
+    <input placeholder="请输入手机号或邮箱" placeholder-style="color:#ccc;"  disabled="disabled" value="{{mobileEmail}}" bindblur="mobileEmail"/>
+  </view>
+  <view class="middle-item line">
+    <view>商户类型</view>
+    <picker bindchange="bindPickerChange" value="{{typeIndex}}" disabled="true" range="{{merchantsTypeArr}}">
+      <view class="picker">
+        {{merchantsTypeArr[typeIndex]}}
+        <image class='select_img' src='images/arrow-down.png'/>
+      </view>
+    </picker>
+  </view>
+  <view class="middle-item line">
+    <view>商户名称</view>
+    <input placeholder="请输入商户名称" disabled="disabled" value="{{merchantsName}}" placeholder-style="color:#ccc;"    bindinput="merchantsName"/>
+  </view>
+  <view class="middle-item line">
+    <view>商户简称</view>
+    <input placeholder="请输入商户简称" disabled="disabled" value="{{abbreviation}}" placeholder-style="color:#ccc;" bindinput="abbreviation"/>
+  </view>
+  <!-- <view class="middle-item line">
+    <view>商户邮箱</view>
+    <input placeholder="请输入商户邮箱" placeholder-style="color:#ccc;"/>
+  </view> -->
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>客服号码</view>
+    <input placeholder="请输入客服号码" disabled="disabled" value="{{tel}}" placeholder-style="color:#ccc;" bindblur="tel"/>
+  </view>
+  <view class="middle-item line">
+    <view>商户地址</view>
+    <view class="section">
+      <!-- <view class="section__title">省市区选择器</view> -->
+      <picker bindchange="provinceChange" data-provinceId="{{provinceArr[provinceIndex].provinceId}}" disabled="true" range='{{provinceArr}}' value='{{provinceIndex}}' range-key="provinceName" >
+          <view class="picker"> 
+            <text>{{provinceArr[provinceIndex].provinceName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+      <picker bindchange="cityChange" disabled="true" data-cityId="{{cityArr[cityIndex].cityId}}" range='{{cityArr}}' value='{{cityIndex}}' range-key="cityName" >
+          <view class="picker"> 
+            <text>{{cityArr[cityIndex].cityName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+      <picker bindchange="areaChange" disabled="true" data-areaId="{{areaArr[areaIndex].areaId}}" range='{{areaArr}}' value='{{areaIndex}}' range-key="areaName" >
+          <view class="picker"> 
+            <text>{{areaArr[areaIndex].areaName}}</text>
+            <image class='select_img' src='images/arrow-down.png'/>
+          </view>
+      </picker>
+    </view>
+  </view>
+  <view class="middle-item line">
+    <view></view>
+    <input placeholder="请输入详细地址" disabled="disabled" value="{{address}}" placeholder-style="color:#ccc;" bindinput="address"/>
+  </view>
+  <view class="middle-item line">
+    <view>营业执照编号</view>
+    <input placeholder="请输入编号" disabled="disabled" value="{{code}}" placeholder-style="color:#ccc;" bindinput="code"/>
+  </view>
+  <view class="middle-item line yyDate">
+    <view>营业执照截止期</view>
+    <view class="section">
+        <!-- <picker mode="date" value="{{startDate}}" start="" end="" bindchange="bindDateChange">
+          <view class="picker">
+            <view class="section__title {{date}}">{{startDate}}</view>
+          </view>
+        </picker>
+        <view class="row-line">-</view> -->
+        <picker mode="date" value="{{endDate}}" start="" end="" disabled="true" bindchange="bindDateChange2">
+          <view class="picker">
+            <view class="section__title {{date2}}">{{endDate}}</view>
+          </view>
+        </picker>
+        <view class="page__bd" bindtap="onRadio">
+          <view class="section section_gap">
+            <radio class="radio"  checked="{{checked}}" disabled="true"  bindchange="radioChange">
+                <!-- <text>{{radioVal}}</text> -->
+            </radio>
+          </view>
+          长期
+          </view>
+        </view>
+    </view>
+  </view>
+
+  <view class="photoView">
+    <view class="photo"  wx:for="{{photoArr}}" wx:key="">
+      <text class="photo-txt">{{item.photoTitle}}</text>
+      <view class="photo-content" data-index="{{index}}">
+        <image class="{{item.uploadImg}}" src="{{item.photoImg}}" catchTap="chooseImageTap" mode="aspectFit"/>
+        <view wx:if="{{item.photoTxt}}">{{item.photoTxt}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 商户产品签约 -->
+<view class="productList {{idx == 1?'':'isHide'}}">
+  <view class="product">
+    <view class="productType">已签支付产品</view>
+    <checkbox-group bindchange="checkboxChange">
+      <view class="checkboxProduct {{productObj[index].val==''?'isHide2':''}}"  wx:for="{{productArr}}" wx:key="">
+        <label class="checkbox">
+            <checkbox value="{{item.productId}}" checked="{{item.checked}}" disabled="true"/>{{item.name}}
+        </label>
+        <view>
+          <view class="rateView">
+            <view class="rate">结算费率：</view>
+            <input type="number" class="rateVal" disabled="disabled" value="{{item.productRate}}"/><text class="rate2">%</text>
+          </view>
+        </view>
+        <view class="snDisplay" wx:if="{{item.productId==8}}"><input class="rateVal" value="{{item.sn}}" placeholder="请输入蜻蜓设备编号SN" disabled="disabled" placeholder-style="color:#ccc"/></view>
+      </view>
+    </checkbox-group>
+  </view>
+  <view class="product {{productHide}}">
+    <view class="productType">可签支付产品</view>
+    <checkbox-group bindchange="checkboxChange">
+      <view class="checkboxProduct {{productObj2[index].val==''?'isHide2':''}}"  wx:for="{{productArr}}" wx:key="{{index}}">
+        <label class="checkbox">
+            <checkbox value="{{item.productId}}" checked="{{item.checked}}"/>{{item.name}}
+        </label>
+        <view>
+          <view class="rateView">
+            <view class="rate">结算费率：</view>
+            <input type="number" class="rateVal" value="{{item.productRate}}" data-index="{{index}}" bindinput="productRate" /><text class="rate2">%</text>
+          </view>
+        </view>
+        <view class="snDisplay" wx:if="{{item.productId==8}}"><input class="rateVal" value="{{item.sn}}" placeholder="请输入蜻蜓设备编号SN" placeholder-style="color:#ccc" bindinput="snInput"/></view>
+      </view>
+    </checkbox-group>
+  </view>
+  <button class="next" bindtap="submitFun">保存</button>
+</view>
+
+
+
+
+
+
+

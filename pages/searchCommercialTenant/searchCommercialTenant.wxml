@@ -1,0 +1,6 @@
+<!--pages/login.wxml-->
+<view class="container">
+  <searchCommercialTenant-cmp id="searchCommercialTenant"/>
+  <block wx:if="{{isHide}}"><alert-cmp  bind:myRefresh="refresh"/></block>
+</view>
+

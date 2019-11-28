@@ -1,0 +1,5 @@
+<!--pages/merchantsIntoPieces/merchantsIntoPieces.wxml-->
+<view class="container">
+  <legalPerson-cmp/>
+</view>
+

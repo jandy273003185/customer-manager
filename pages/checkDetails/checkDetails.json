@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "checkDetails-cmp":"/components/checkDetails/index"
+  }
+}

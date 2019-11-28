@@ -1,0 +1,31 @@
+<!--components/alertDate/index.wxml-->
+<view class="box {{dateHide}}">
+  <view class="dialog">
+    <text class="title">时间</text>
+    <view class="time">
+      <view class="selectedTime {{index==idx?'active':''}}" wx:for="{{timeArr}}" wx:key="" data-index="{{index}}" catchtap='onTime'>{{item.name}}
+      </view>
+    </view>
+    
+    <view class="startTimeView">
+      <text class="startTime">开始时间</text>
+      <view class="">
+        <picker mode="date" value="{{startTime}}" start=""  end="{{endTime}}" bindchange="bindDateChange">
+          <view class="dateView">{{startTime}}</view>
+        </picker>
+      </view>
+    </view>  
+    <view class="endTimeView">
+      <text class="endTime">结束时间</text>
+      <view class="">
+        <picker mode="date" value="{{endTime}}" start="{{startTime}}" end="" bindchange="bindDateChange2">
+          <view class="dateView">{{endTime}}</view>
+        </picker>
+      </view>
+    </view> 
+    <view class="confirmView">
+      <text class="cancel" bindtap="cancel">取消</text>
+      <text class="confirm" bindtap="confirmSubmit">确认</text>
+    </view> 
+  </view>
+</view>

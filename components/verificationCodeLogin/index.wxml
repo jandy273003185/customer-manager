@@ -1,0 +1,26 @@
+<!--components/homePage/index.wxml-->
+<view class="logo">
+  <image src="/images/logo.png"/>
+  <text>七分钱客户经理</text>
+</view>
+
+<view class="loginType">
+  <text>验证码登录</text>
+</view>
+
+<view class="rowLine"></view>
+<view class="accountNum">
+  <input placeholder="输入手机号码" value="{{inputValue}}" placeholder-style="color:#ccc;"/>
+  <image bind:tap="clearInput" src="/images/clear.png"/>
+</view>
+<view class="accountNum line">
+  <input placeholder="输入验证码" placeholder-style="color:#ccc;"/>
+  <view class="colLine"></view>
+  <view><button id="getVerificationCode" class="getVerificationCode" bind:tap="getVerificationCode" disabled="{{isDisabled}}">{{verificationCode}}</button></view>
+</view>
+
+<view class="login">
+  <button>登录</button>
+</view>
+
+<view class="loginWay" bind:tap="accountLogin">账号密码登录</view>

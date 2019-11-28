@@ -1,0 +1,84 @@
+<!--components/deal/index.wxml-->
+<view class="navbar">
+  <text>{{title}}</text>
+</view>
+
+<view class="container-up">
+  <view class="search">
+    <image class="searchImg" src="/images/search.png"/>
+    <input value="{{custName}}" bindconfirm="inputSearch" confirm-type="search" bindinput="inputEvent"/>
+    <image class="clear" src="/images/clear.png" bindtap="clear"/>
+  </view>
+</view>
+
+<view class="status">
+  <view class="{{index==idx?'active':''}}" wx:for="{{dateArr}}" wx:key="" data-index="{{index}}" bindtap='onDate'>{{item.name}}
+  </view>
+  
+</view>
+
+<view class="box {{dateHide}}">
+  <view class="dialog">
+    <text class="title">时间</text>
+    <view class="time2">
+      <view class="selectedTime {{index==idx?'active':''}}" wx:for="{{timeArr}}" wx:key="" data-index="{{index}}" catchtap='onTime'>{{item.name}}
+      </view>
+    </view>
+    
+    <view class="startTimeView">
+      <text class="startTime">开始时间</text>
+      <view class="">
+        <picker mode="date" value="{{queryStartDate}}" start="" end="{{queryEndDate}}" bindchange="bindDateChange">
+          <view class="dateView">{{queryStartDate}}</view>
+          <view class="section__title {{startDateHide}}"><image src="/images/date.png"/></view>
+        </picker>
+      </view>
+    </view>  
+    <view class="endTimeView">
+      <text class="endTime">结束时间</text>
+      <view class="">
+        <picker mode="date" value="{{queryEndDate}}" start="{{queryStartDate}}" end="" bindchange="bindDateChange2">
+          <view class="dateView">{{queryEndDate}}</view>
+          <view class="section__title {{endDateHide}}"><image src="/images/date.png"/></view>
+        </picker>
+      </view>
+    </view> 
+    <view class="confirmView">
+      <text class="cancel" bindtap="cancel">取消</text>
+      <text class="confirm" bindtap="confirmSubmit">确认</text>
+    </view> 
+  </view>
+</view>
+
+<view class="ranking">
+  <view class="numView" bindtap="onSort" data-type="0">
+    <view>笔数排名</view>
+    <image src="images/ranking.png"/>
+  </view>
+  <view class="moneyView" bindtap="onSort" data-type="1">
+    <view class="money">金额排名</view>
+    <image src="images/ranking.png"/>
+  </view>
+</view>
+
+<scroll-view  style ="height:{{warpHeight}};" scroll-y ="true" bindscrolltolower="loadMore" class='deviceScroll' >
+  <view class="list" wx:for="{{listArr}}" wx:key="{{index}}">
+    <view class="shop"><view>{{index+1}}</view><view>{{item.cust_name}}</view></view>
+    <view class="num">{{item.transactionNum}} 笔</view>
+    <view class="num right">{{item.transactionAmount}} 元</view>
+  </view>
+  <view class="{{loaded == ''?'hide':'loaded'}}">{{loadTxt}}</view>
+</scroll-view>
+
+<wxs module="m1">
+  function fn(arr, arg) {
+    var result = {
+      indexOf: false,
+      toString: ''
+    }
+    result.indexOf = arr.indexOf(arg) > -1;
+    return result;
+  }
+  module.exports.fn = fn;
+</wxs>
+

@@ -1,0 +1,3 @@
+<!--components/hint/index.wxml-->
+
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>

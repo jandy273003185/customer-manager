@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "alertDate-cmp":"/components/alertDate/index"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "navbar-cmp": "/components/navbar/index",
+    "alertDate-cmp": "/components/alertDate/index",
+    "alert-cmp": "/components/alert/index"
+  }
+}

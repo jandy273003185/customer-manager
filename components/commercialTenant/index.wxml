@@ -1,0 +1,86 @@
+<!--components/searchCommercialTenant/index.wxml-->
+<view class="navbar">
+  <text>{{title}}</text>
+</view>
+
+<view class="container-up">
+  <view class="search">
+    <image class="searchImg" src="/images/search.png"/>
+    <input value="{{custName}}" bindconfirm="inputSearch" confirm-type="search" bindinput="inputEvent"/>
+    <image class="clear" src="/images/clear.png" bindtap="clear"/>
+  </view>
+  <view class="date" bindtap="alertDate">
+      <view class="section">
+        <!-- <picker value="{{date}}" start="" end="" bindchange="bindDateChange"> -->
+          <view class="picker">
+            <view class="section__title"><image src="images/date.png"/></view>
+            <text>日期</text>
+          </view>
+        <!-- </picker> -->
+      </view>
+    </view>
+</view>
+
+<view class="status">
+  <view class="{{item.id==idx?'active':''}}" wx:for="{{statusArr}}" wx:key="" data-index="{{item.id}}" bindtap='onCheck'>{{item.name}}
+  </view>
+</view>
+
+<scroll-view  style ="height:{{warpHeight}};" scroll-y ="true" bindscrolltolower="loadMore" class='deviceScroll' >
+  <view class="commercialTenantList" wx:for="{{listArr}}" wx:key="{{index}}" data-status="{{item.state}}" bindtap="onStatus" data-custid="{{item.custId}}">
+    <view class="commercialTenantNum">
+      <text class="shop">{{item.custName}}</text> 
+      <text class="time">{{item.createTime}}</text>
+    </view>
+    <view class='commercialTenantText'>
+      <view class='{{  item.state=="审核通过"?"green":""||item.state=="审核中"?"blue":""||item.state=="待完善"?"gray":""||item.state=="待审核"||""?"gray":""||item.state=="审核失败"?"red":""}}'>{{item.state}}</view>
+    </view>
+  </view>
+  <view class="{{loaded == ''?'hide':'loaded'}}">{{loadTxt}}</view>
+</scroll-view>
+
+<view class="box {{dateHide}}">
+  <view class="dialog">
+    <text class="title">时间</text>
+    <view class="time2">
+      <view class="selectedTime {{index==idx?'active':''}}" wx:for="{{timeArr}}" wx:key="" data-index="{{index}}" catchtap='onTime'>{{item.name}}
+      </view>
+    </view>
+    
+    <view class="startTimeView">
+      <text class="startTime">开始时间</text>
+      <view class="">
+        <picker mode="date" value="{{queryStartDate}}" start="" end="{{queryEndDate}}" bindchange="bindDateChange">
+          <view class="dateView">{{queryStartDate}}</view>
+          <view class="section__title {{startDateHide}}"><image src="images/date.png"/></view>
+        </picker>
+      </view>
+    </view>  
+    <view class="endTimeView">
+      <text class="endTime">结束时间</text>
+      <view class="">
+        <picker mode="date" value="{{queryEndDate}}" start="{{queryStartDate}}" end="" bindchange="bindDateChange2">
+          <view class="dateView">{{queryEndDate}}</view>
+          <view class="section__title {{endDateHide}}"><image src="images/date.png"/></view>
+        </picker>
+      </view>
+    </view> 
+    <view class="confirmView">
+      <text class="cancel" bindtap="cancel">取消</text>
+      <text class="confirm" bindtap="confirmSubmit">确认</text>
+    </view> 
+  </view>
+</view>
+
+<wxs module="m1">
+  function fn(arr, arg) {
+    var result = {
+      indexOf: false,
+      toString: ''
+    }
+    result.indexOf = arr.indexOf(arg) > -1;
+    return result;
+  }
+  module.exports.fn = fn;
+</wxs>
+

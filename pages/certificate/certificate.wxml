@@ -1,0 +1,6 @@
+<!--pages/merchantsIntoPieces/merchantsIntoPieces.wxml-->
+<view class="container">
+  <certificate-cmp bind:alertEvent="alertShow"/>
+  <block wx:if="{{isHide}}"><alert-cmp bind:myevent="alertShow2" bind:myEvent="errorHint" bind:myRefresh="refresh"/></block>
+</view>
+
