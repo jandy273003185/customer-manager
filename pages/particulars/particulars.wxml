@@ -1,0 +1,79 @@
+<!--服务商交易详情-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+<view class="particulars-page">
+  <view class="particulars-header">
+    <view class="particulars-header-main">
+      <view class="particulars-header-tit">
+        {{date}}
+        <image src="/images/date.png" mode="aspectFit" bindtap="customData" />
+      </view>
+
+      <view class="over-item">
+        <view>
+          <text>{{commercialNum}}</text>
+          <text>进件商户数</text>
+        </view>
+        <view>
+          <text>{{passingRateNum}}</text>
+          <text>开通商户数</text>
+        </view>
+      </view>
+
+      <view class="over-item active">
+        <view>
+          <text>{{transactionNum}}</text>
+          <text>交易笔数（笔）</text>
+        </view>
+        <view>
+          <text>{{transactionAmount}}</text>
+          <text>交易金额（元）</text>
+        </view>
+      </view>
+
+      <view class="over-item">
+        <view>
+          <text>{{perfectSum}}</text>
+          <text>待完善商户数</text>
+        </view>
+        <view>
+          <text>{{reviewSum}}</text>
+          <text>待审核商户数</text>
+        </view>
+      </view>
+
+      <view class="over-item">
+        <view>
+          <text>{{effectiveSum}}</text>
+          <text>有效商户数</text>
+        </view>
+        <view>
+          <text>{{avgNum}}</text>
+          <text>交易笔均金额（元）</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="particulars-list-head">
+    <view>交易量前5位商户</view>
+    <view>笔数</view>
+    <view>金额</view>
+  </view>
+
+  <view class="particulars-list">
+    <view class="particulars-item" wx:for="{{particularsList}}" wx:key="custId">
+      <view>{{index + 1}} {{item.cust_name}}</view>
+      <view>{{item.transactionNum}}笔</view>
+      <view>{{item.transactionAmount}}元</view>
+    </view>
+  </view>
+
+
+  <block wx:if="{{dateHide}}">
+    <site-date bind:myEvent="cancelDate" bind:myEvent2="confirmDate" />
+  </block>
+</view>

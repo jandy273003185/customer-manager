@@ -125,11 +125,14 @@
 </view>
 
 <view class="photoView">
-  <view class="photo {{(index == 0 && typeIndex == 0) ? 'typeHide' : ''}}"  wx:for="{{photoArr}}" wx:key="{{index}}"  data-index="{{index}}">
-    <text class="photo-txt"><text wx:if="{{index == 2}}" style="color:red">*</text>{{item.photoTitle}}</text>
+  <view class="photo {{(index == 0 && typeIndex == 0) ? 'typeHide' : ''}}"  wx:for="{{photoArr}}" wx:key="photoTitle"  data-index="{{index}}">
+    <text class="photo-txt"><text wx:if="{{index == 0 || index == 1 || index == 2}}" style="color:red">*</text>{{item.photoTitle}}</text>
+    <view class="{{item.delImgHide}}" data-index="{{index}}" bindtap="delImg">
+      <image class="del-img {{(typeIndex == 0) ? (index%2==1?'':'odd-img'):(index%2==0?'':'odd-img')}}" mode='aspectFill' src="/images/clear.png"/>
+    </view>
     <view class="photo-content" bindtap="chooseimage" data-index="{{index}}">
       <image class="{{item.uploadImg}}" src="{{item.photoImg}}" catchTap="chooseImageTap" mode="aspectFit"/>
-      <view wx:if="{{item.photoTxt}}">{{item.photoTxt}}</view>
+      <view class="{{item.photoTxtHide}}">{{item.photoTxt}}</view>
     </view>
   </view>
 </view>
@@ -138,3 +141,4 @@
 
 <view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
 
+<canvas class="canvas" canvas-id="canvas" :style="{width:imageSize.imageWidth+'px',height:imageSize.imageHeight+'px', visibility: 'hidden', 'position':'absolute', 'z-index': '-1', left: '-10000rpx',top:'-10000rpx'}"></canvas>

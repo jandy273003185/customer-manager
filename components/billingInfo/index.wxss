@@ -95,7 +95,7 @@ page{
   font-weight: 500 !important;
 }
 .select_img{
-  width: 28rpx;
+  max-width: 28rpx;
   height: 20rpx;
   display: block;
   transition:transform 0.3s;
@@ -163,7 +163,16 @@ page{
   width: 100% !important;
   height: 100% !important;
 }
-
+.photoTxtHide,.delImgHide{
+  display: none !important;
+}
+.del-img{
+  position:absolute;
+  width:30rpx !important;
+  height:30rpx !important;
+  left:366rpx;
+  top: 982rpx;
+}
 .next{
   background-color: #699dd7;
   color: #fff;

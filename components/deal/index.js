@@ -12,7 +12,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    title: '交易',
+    title: '商户交易',
     dateArr: [
       { id: 0, name: '今日'}, 
       { id: 1, name: '近7天'},
@@ -33,7 +33,9 @@ Component({
     queryStartDate: util.dateFormat("YYYY-mm-dd", new Date()),
     queryEndDate: util.dateFormat("YYYY-mm-dd", new Date()),
     orderBy: 'transactionAmount desc',//排序
-    timeStamp:''
+    timeStamp:'',
+    sortTitle: 'sort-title',
+    loadMoreFlag: false
   },
 
   attached() {
@@ -61,6 +63,7 @@ Component({
     },
     // 交易列表
     queryList() {
+      wx.showLoading();
       let params = {
         url: 'comm/getDealRanking.do',
         method: 'get',
@@ -75,11 +78,13 @@ Component({
           orderBy: this.data.orderBy
         }
       }
-      console.log(params);
+      // console.log(params);
       util.http(params).then(data => {
         if (data) {
-          console.log(data)
+          // console.log(data)
+          wx.hideLoading();
           let arr = this.data.listArr;
+          if (!this.data.loadMoreFlag) { arr = []; this.setData({ loadMoreFlag: false }); }
           arr = arr.concat(data.data);
           this.setData({ total: data.total });
           this.setData({ listArr: arr});
@@ -127,7 +132,7 @@ Component({
       if (this.data.listArr.length >= this.data.total) { return };
       let pageNum = this.data.pageNum;
       ++pageNum;
-      this.setData({ pageNum });
+      this.setData({ loadMoreFlag: true,pageNum });
       this.queryList();
     },
     onDate(e) {//日期查询（全部。。。）
@@ -257,6 +262,25 @@ Component({
     },
     cancel() {
       this.setData({ dateHide: 'dateHide' });
-    }
+    },
+    touchStart(e) {
+      this.setData({
+        "startX": e.changedTouches[0].clientX,
+        "startY": e.changedTouches[0].clientY
+      });
+    },
+    touchEnd(e) {
+      let endX = e.changedTouches[0].clientX;
+      let endY = e.changedTouches[0].clientY;
+      if (util.getTouchData(endX, endY, this.data.startX, this.data.startY) == "left") {
+        wx.switchTab({
+          url: '/pages/providers/providers',
+        })
+      } else if (util.getTouchData(endX, endY, this.data.startX, this.data.startY) == "right") {
+        wx.switchTab({
+          url: '/pages/commercialTenant/commercialTenant',
+        })
+      }
+    },
   }
 })

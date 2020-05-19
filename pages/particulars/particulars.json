@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#699dd7",
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "阳关科技公司业绩数据",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "site-icon": "/components/SiteIcon/SiteIcon",
+    "site-date": "/components/alertDate/index"
+  }
+}

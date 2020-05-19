@@ -1,0 +1,30 @@
+<!--components/serviceManager/index.wxml-->
+<view class="navbar">
+    <image src="/images/back.png" bindtap="navBack" />
+    <text>{{title}}</text>
+</view>
+
+<view class="container-up">
+    <view class="type">类型</view>
+    <view class="company">名称</view>
+    <view class="status">状态</view>
+</view>
+
+<scroll-view style ="height:{{warpHeight}};" scroll-y="true" bindscrolltolower="loadMore" class='deviceScroll'>
+    <view class="commercialTenantList" wx:for="{{listArr}}" wx:key="custId" data-status="{{item.state}}" data-custid="{{item.custId}}">
+        <view class="typeList">{{item.serviceLevel}}</view>
+        <view class="companyList">{{item.custName}}</view>
+        <view class='commercialTenantText'>
+            <view class='{{  item.state=="生效"?"green":""||item.state=="审核中"?"blue":""||item.state=="冻结"?"gray":""||item.state=="审核不通过"?"red":""}}'>{{item.state}}</view>
+        </view>
+    </view>
+    <view class="{{loaded == ''?'hide':'loaded'}}">{{loadTxt}}</view>
+</scroll-view>
+<view class="addService" bindtap="addService">
+    <view class="add">+</view>
+    <view>添加服务商</view>
+</view>
+<view class="bg {{isHide}}">
+    <image src="/images/no_commercial.png" />
+    <text>没有商户信息</text>
+</view>

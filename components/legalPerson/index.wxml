@@ -25,6 +25,37 @@
 
 <view class="middle">
   <view class="middle-item line">
+    <view><span style="color:red">*</span>联系人名字</view>
+    <input value="{{name}}" placeholder="请输入联系人名字" placeholder-style="color:#ccc;" bindblur="nameVerifycation"/>
+  </view>
+  <view class="middle-item line">
+    <view><span style="color:red">*</span>联系人手机</view>
+    <input type="number" value="{{mobile}}" placeholder="请输入联系人手机" placeholder-style="color:#ccc;" bindblur="mobile"/>
+  </view>
+</view>
+<view class="business-license">
+  <view class="business-license-txt photo-align"><span style="color:red">*</span>法人身份证照片</view>
+  <view>
+    <view class="icardidentityCard" bindtap="chooseimage">
+      <view class="{{delImgHide}}" catchtap="delImg">
+        <image class="del-img" mode='aspectFill' src="/images/clear.png"/>
+      </view>
+      <image class="{{uploadImg}}" src="{{tempFilePaths }}" catchTap="chooseImageTap" mode="aspectFit"/>
+      <!-- <text wx:if="{{uploadTxt}}">上传身份证正面</text> -->
+      <text class="{{photoTxtHide}}">上传身份证正面</text>
+    </view>
+    <view class="icardidentityCard2" bindtap="chooseimage2">
+      <view class="{{delImgHide2}}" catchtap="delImg2">
+        <image class="del-img odd-img" mode='aspectFill' src="/images/clear.png"/>
+      </view>
+      <image class="{{uploadImg2}}" src="{{tempFilePaths2 }}" catchTap="chooseImageTap" mode="aspectFit"/>
+      <!-- <text wx:if="{{uploadTxt2}}">上传身份证反面</text> -->
+      <text class="{{photoTxtHide2}}">上传身份证反面</text>
+    </view>
+  </view>
+</view>
+<view class="legalPerson">
+  <view class="middle-item line">
     <view><span style="color:red">*</span>法人名字</view>
     <input value="{{representativeName}}" placeholder="请输入法人名字" placeholder-style="color:#ccc;" bindblur="representativeName"/>
   </view>
@@ -32,7 +63,7 @@
     <view><span style="color:red">*</span>法人身份证号码</view>
     <input value="{{iDcard}}" placeholder="请输入身份证号码" placeholder-style="color:#ccc;" bindblur="iDcard"/>
   </view>
-  <!-- <view class="middle-item line yyDate">
+  <view class="middle-item line yyDate">
     <view><span style="color:red">*</span>身份证有效期</view>
     <view class="section">
         <picker mode="date" value="{{startDate}}" start="" end="{{endDate}}" bindchange="bindDateChange">
@@ -54,27 +85,6 @@
           长期
         </view>
       </view>
-  </view> -->
-  <view class="middle-item line">
-    <view><span style="color:red">*</span>联系人名字</view>
-    <input value="{{name}}" placeholder="请输入联系人名字" placeholder-style="color:#ccc;" bindblur="nameVerifycation"/>
-  </view>
-  <view class="middle-item line">
-    <view><span style="color:red">*</span>联系人手机</view>
-    <input type="number" value="{{mobile}}" placeholder="请输入联系人手机" placeholder-style="color:#ccc;" bindblur="mobile"/>
-  </view>
-</view>
-<view class="business-license">
-  <text class="business-license-txt">法人身份证照片</text>
-  <view>
-    <view class="icardidentityCard" bindtap="chooseimage">
-      <image class="{{uploadImg}}" src="{{tempFilePaths }}" catchTap="chooseImageTap" mode="aspectFit"/>
-      <text wx:if="{{uploadTxt}}">上传身份证正面</text>
-    </view>
-    <view class="icardidentityCard2" bindtap="chooseimage2">
-      <image class="{{uploadImg2}}" src="{{tempFilePaths2 }}" catchTap="chooseImageTap" mode="aspectFit"/>
-      <text wx:if="{{uploadTxt2}}">上传身份证反面</text>
-    </view>
   </view>
 </view>
 <button class="next" bindtap="nextFun">下一步</button>

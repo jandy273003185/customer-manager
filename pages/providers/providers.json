@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#699dd7",
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "服务商交易",
+  "usingComponents": {
+    "site-icon": "/components/SiteIcon/SiteIcon",
+    "site-date": "/components/alertDate/index"
+  }
+}

@@ -3,7 +3,7 @@
   <text>{{title}}</text>
 </view>
 
-<view class="container-up">
+<view class="container-up" bindtouchstart='touchStart' bindtouchend="touchEnd">
   <view class="search">
     <image class="searchImg" src="/images/search.png"/>
     <input value="{{custName}}" bindconfirm="inputSearch" confirm-type="search" bindinput="inputEvent"/>
@@ -21,13 +21,13 @@
     </view>
 </view>
 
-<view class="status">
-  <view class="{{item.id==idx?'active':''}}" wx:for="{{statusArr}}" wx:key="" data-index="{{item.id}}" bindtap='onCheck'>{{item.name}}
+<view class="status" bindtouchstart='touchStart' bindtouchend="touchEnd">
+  <view class="{{item.id==idx?'active':''}}" wx:for="{{statusArr}}" wx:key="id" data-index="{{item.id}}" bindtap='onCheck'>{{item.name}}
   </view>
 </view>
 
-<scroll-view  style ="height:{{warpHeight}};" scroll-y ="true" bindscrolltolower="loadMore" class='deviceScroll' >
-  <view class="commercialTenantList" wx:for="{{listArr}}" wx:key="{{index}}" data-status="{{item.state}}" bindtap="onStatus" data-custid="{{item.custId}}">
+<scroll-view  style ="height:{{warpHeight}};" scroll-y ="true" bindscrolltolower="loadMore" class='deviceScroll'  bindtouchstart='touchStart' bindtouchend="touchEnd">
+  <view class="commercialTenantList" wx:for="{{listArr}}" wx:key="custId" data-status="{{item.state}}" bindtap="onStatus" data-custid="{{item.custId}}">
     <view class="commercialTenantNum">
       <text class="shop">{{item.custName}}</text> 
       <text class="time">{{item.createTime}}</text>
@@ -43,7 +43,7 @@
   <view class="dialog">
     <text class="title">时间</text>
     <view class="time2">
-      <view class="selectedTime {{index==idx?'active':''}}" wx:for="{{timeArr}}" wx:key="" data-index="{{index}}" catchtap='onTime'>{{item.name}}
+      <view class="selectedTime {{index==idx?'active':''}}" wx:for="{{timeArr}}" wx:key="idx" data-index="{{index}}" catchtap='onTime'>{{item.name}}
       </view>
     </view>
     

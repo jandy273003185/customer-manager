@@ -1,0 +1,136 @@
+.navbar{
+  display: flex;
+  align-items: center;
+  background-color: #699dd7;
+  width: 100%;
+  height: 100rpx;
+  padding-top: 40rpx;
+  padding-left: 10rpx;
+  position: fixed;
+  z-index: 999;
+}
+.navbar image{
+  width: 22rpx;
+  height: 32rpx;
+  padding: 8rpx 20rpx 0 20rpx;
+}
+.navbar text{
+  color: #fff !important;
+  font-size: 38rpx !important;
+}
+.particulars-header {
+  background-color: #eee;
+  padding: 20rpx 30rpx;
+  color: #333;
+}
+.particulars-page{
+  padding-top: 140rpx;
+}
+.particulars-header-main {
+  padding: 0 20rpx;
+  background-color: #fff;
+}
+
+.particulars-header-main>view {
+  border-bottom: 1rpx solid #eee;
+}
+
+.particulars-header-tit {
+  height: 68rpx;
+  color: #a7a7a7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.particulars-header-tit image {
+  width: 52rpx;
+  height: 100%;
+}
+
+.over-item {
+  display: flex;
+  justify-content: space-around;
+}
+
+.over-item.active {
+  border-bottom: 10rpx solid #eee;
+}
+
+.over-item > view {
+  padding: 25rpx 0;
+  flex: 1;
+}
+
+.over-item > view text {
+  display: block;
+  text-align: center;
+}
+
+.over-item > view text:first-child {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.over-item > view text:last-child {
+  color: #999;
+  font-size: 26rpx;
+  margin-top: 14rpx;
+}
+
+.particulars-list-head {
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: #eee;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+}
+
+.particulars-list-head view:first-child {
+  flex: 4;
+}
+
+.particulars-list-head view:nth-child(2) {
+  flex: 2;
+  text-align: center;
+}
+
+.particulars-list-head view:last-child {
+  flex: 3;
+  text-align: right;
+}
+
+.particulars-list {
+  padding: 0 30rpx;
+}
+
+.particulars-item {
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.particulars-item>view {
+  overflow: hidden;
+  height: 44rpx;
+  line-height: 44rpx;
+  word-break: break-all;
+}
+
+.particulars-item view:first-child {
+  flex: 4;
+}
+
+.particulars-item view:nth-child(2) {
+  flex: 2;
+  text-align: center;
+  color: #999;
+}
+
+.particulars-item view:last-child {
+  flex: 3;
+  text-align: right;
+  color: #999;
+}

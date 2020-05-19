@@ -3,8 +3,9 @@ let app = getApp();
 /**
  * 封装http 请求方法
  */
-const apiUrl = "https://cm.qifenqian.com/";//测试服务器api地址 
-// const apiUrl = "http://192.168.1.141:8089/";
+// const apiUrl = "http://192.168.1.141:8089/";//何老板电脑api地址
+const apiUrl = "https://cm-uat.qifenqian.com/";//测试服务器api地址
+// const apiUrl = "https://cm.qifenqian.com/";//正试服务器api地址 
 const http = (params) => {
   const token = wx.getStorageSync('userStorage').token;
   const userId = wx.getStorageSync('userStorage').userId; //console.log(token, userId)
@@ -23,19 +24,7 @@ const http = (params) => {
       success: function (res) {
         //接口访问正常返回数据
         if (res.statusCode == 200) {
-          //1. 操作成功返回数据,原则上只针对服务器端返回成功的状态（如本例中为000000）
-          if (res.data.retCode == "000000") {
-            resolve(res.data)
-          } else if (params.url == "/order/result" && res.data.retCode == "800020") {//支付结果未知      
-            //需要特殊处理的接口，可以单独列出来返回数据
-            resolve(res.data)
-          } else {
-            // wx.showToast({
-            //   icon: "none",
-            //   title: res.data.retMsg
-            // })
             resolve(res.data);
-          }
         } else {
           //2. 操作不成功返回数据，以toast方式弹出响应信息，如后端未格式化非操作成功异常信息，则可以统一定义异常提示
           var errMsg = res.data.message
@@ -46,11 +35,9 @@ const http = (params) => {
             reLogin();
           }
         }
-      },
+      },    
       fail: function (e) {
-        // errorToast();
-        console.log(e)
-        reject(e)
+        tips('服务器异常,请稍后重试!')
       }
     })
   })
@@ -103,6 +90,95 @@ function imgUpload(params){//图片上传
     })
   })
 }
+
+function getBase64Image(img) {//将图片转化为base64
+  let canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+  let ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0, img.width, img.height);
+  const ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+  const dataURL = canvas.toDataURL("image/" + ext);
+  return dataURL;
+}
+
+//*************** 图片压缩 ***********
+// 判断图片大小是否满足需求
+function imageSizeIsLessLimitSize(imagePath, limitSize, lessCallBack, moreCallBack) {
+  wx.getFileInfo({
+    filePath: imagePath,
+    success(res) {
+      console.log("压缩前图片大小:", res.size / 1024, 'kb');
+      if (res.size > 1024 * limitSize) {
+        moreCallBack();
+      } else {
+        lessCallBack();
+      }
+    }
+  })
+};
+/**
+ * 获取画布图片 
+ */
+// 利用cavas进行压缩  每次压缩都需要ctx.draw()  wx.canvasToTempFilePath()连用
+function getCanvasImage(canvasId, imagePath, imageW, imageH,that, getImgsuccess) {
+  const ctx = wx.createCanvasContext(canvasId);
+  ctx.drawImage(imagePath, 0, 0, imageW, imageH);
+  ctx.draw(false, setTimeout( function(){ // 一定要加定时器，因为ctx.draw()应用到canvas是有个时间的
+    wx.canvasToTempFilePath({
+      canvasId: canvasId,
+      x: 0,
+      y: 0,
+      width: imageW,
+      height: imageH,
+      // width: 1000,
+      // height: 1000,
+      destWidth: imageW*20,
+      destHeight: imageH*20,
+      quality: 1,
+      success: function (res) {
+        console.log(res.tempFilePath)
+        getImgsuccess(res.tempFilePath);
+      },fail:function(res){console.log(res)}
+    },that);
+  }, 200));
+};
+
+// 主调用方法
+
+/**
+ * 获取小于限制大小的Image, limitSize默认为100KB，递归调用。
+ */
+function getLessLimitSizeImage(canvasId, imagePath, limitSize=100, drawWidth,that, callBack) {
+  imageSizeIsLessLimitSize(imagePath, limitSize,
+    (lessRes) => {
+      callBack(imagePath);
+    },
+    (moreRes) => {
+      wx.getImageInfo({
+        src: imagePath,
+        success: function (imageInfo) {
+          var maxSide = Math.max(imageInfo.width, imageInfo.height);
+          //画板的宽高默认是windowWidth
+          var windowW = drawWidth;
+          var scale = 1; //console.log(windowW,maxSide)
+          if (maxSide > windowW) {
+            scale = windowW / maxSide;
+          }
+          var imageW = Math.trunc(imageInfo.width * scale);
+          var imageH = Math.trunc(imageInfo.height * scale);
+          console.log('调用压缩', imageW, imageH);
+          // if (imageW == imageH){return;}
+          getCanvasImage(canvasId, imagePath, imageW, imageH,that,
+            (pressImgPath) => {
+              getLessLimitSizeImage(canvasId, pressImgPath, limitSize, drawWidth * 0.95,that, callBack);
+            }
+          );
+        }
+      })
+    }
+  )
+};
 
 function dateFormat(fmt, date) {
   let ret;
@@ -185,7 +261,8 @@ function nameVerifycation(val){//姓名
 }
 
 function bankNo(val) {//银行卡号
-  const regBank = /^(\d{16}|\d{19})$/;
+  // const regBank = /^(\d{16}|\d{19})$/;
+  const regBank = /^\d{5,19}$/;
   if (regBank.test(val)) {
     return true;
   } else {
@@ -240,6 +317,27 @@ function debounce(fn, interval) {
   };
 }
 
+function tips(msg){//信息提示
+  wx.showToast({
+    title: msg,
+    icon: 'none',
+    duration: 3000
+  })
+}
+/***
+ * 判断用户滑动
+ * 左滑还是右滑
+ */
+const getTouchData = (endX, endY, startX, startY) => {
+  let turn = "";
+  if (endX - startX > 50 && Math.abs(endY - startY) < 50) {      //右滑
+    turn = "right";
+  } else if (endX - startX < -50 && Math.abs(endY - startY) < 50) {   //左滑
+    turn = "left";
+  }
+  return turn;
+}
+
 module.exports = {
   dateFormat: dateFormat,
   calculateDay: calculateDay,
@@ -253,6 +351,12 @@ module.exports = {
   wxCommon: wxCommon,
   ohShitfadeOut: ohShitfadeOut,
   imgUpload: imgUpload,
+  getBase64Image: getBase64Image,
+  getLessLimitSizeImage, 
+  imageSizeIsLessLimitSize,
+  getCanvasImage,
   throttle: throttle,
-  debounce: debounce
+  debounce: debounce,
+  tips:tips,
+  getTouchData: getTouchData
 }

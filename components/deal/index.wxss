@@ -256,3 +256,7 @@ page{
   color: #929292;
   padding: 10rpx 0 20rpx 0;
 }
+
+.sort-title{
+  color: #699dd7;
+}

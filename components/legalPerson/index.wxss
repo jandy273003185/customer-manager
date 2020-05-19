@@ -69,10 +69,18 @@ page{
   align-items: center;
   padding:24rpx;
 }
+.legalPerson{
+  margin-top: 20rpx;
+  background-color: #fff;
+}
 .middle-item view,.business-license-txt{
   font-weight: bold;
   color: #494848;
   font-size: 30rpx;
+}
+.photo-align{
+  display: flex;
+  justify-content: left !important;
 }
 .middle-item input{
   text-align: right;
@@ -150,6 +158,19 @@ page{
 }
 .upload-txt{
   display: none;
+}
+.photoTxtHide,.delImgHide,.photoTxtHide2,.delImgHide2{
+  display: none !important;
+}
+.del-img{
+  position:absolute;
+  width:30rpx !important;
+  height:30rpx !important;
+  left:354rpx;
+  /* top: 732rpx; */
+}
+.odd-img{
+  left:718rpx;
 }
 /* .radio{
   background: #699dd7;

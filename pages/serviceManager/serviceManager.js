@@ -1,18 +1,19 @@
-// pages/alert.js
+// pages/login.js
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isHide: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -26,7 +27,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let serviceManager = this.selectComponent("#serviceManager"); //组件的id
+    serviceManager.refresh();
   },
 
   /**
@@ -47,7 +49,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    let serviceManager = this.selectComponent("#serviceManager"); //组件的id
+    serviceManager.refresh();
+    // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
   },
 
   /**

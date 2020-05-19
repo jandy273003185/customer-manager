@@ -4,13 +4,15 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
@@ -21,9 +23,9 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.9.4",
 	"appid": "wx5abd0aafbd88ce54",
-	"projectname": "customer-manager",
+	"projectname": "customer-manager-ui",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -149,6 +151,34 @@
 					"id": -1,
 					"name": "提交",
 					"pathName": "pages/alert/alert",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "服务商列表",
+					"pathName": "pages/serviceManager/serviceManager",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新增服务商",
+					"pathName": "pages/increase/increase",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "服务商交易",
+					"pathName": "pages/providers/providers",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "服务商交易详情",
+					"pathName": "pages/particulars/particulars",
 					"scene": null
 				}
 			]

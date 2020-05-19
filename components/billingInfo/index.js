@@ -46,7 +46,9 @@ Component({
     photo: '',
     arrObj: [],
     flag1: '',
-    flag2: ''
+    flag2: '',
+    photoTxtHide: '',
+    delImgHide: 'delImgHide',
   },
 
   attached() {
@@ -54,16 +56,12 @@ Component({
     if (merchantsInfoStorage) {
       console.log(merchantsInfoStorage)
       this.setData({ arrObj: merchantsInfoStorage })
-      // let province = 'region[0]';
-      // let city = 'region[1]';
       let img = '';
-      // if (merchantsInfoStorage[0].cInfo[8] && merchantsInfoStorage[0].cInfo[8].scanCopyPath) { img = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[8].scanCopyPath; this.setData({ uploadImg: 'upload-img', uploadTxt: false, flag1: 2 })} else { img = 'images/add.png' }
-
       for (let i = 0; i < merchantsInfoStorage[0].cInfo.length; i++) {
         if (merchantsInfoStorage[0].cInfo[i].certifyType == '03' && merchantsInfoStorage[0].cInfo[i].scanCopyPath) {
-          img = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg: 'upload-img', uploadTxt: false, flag1: 2 })
+          img = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg: 'upload-img', photoTxtHide: 'photoTxtHide', delImgHide: '', flag1: 2 })
         } else if (merchantsInfoStorage[0].cInfo[i].certifyType == '07' && merchantsInfoStorage[0].cInfo[i].scanCopyPath) {
-          img = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg: 'upload-img', uploadTxt: false, flag1: 2 })
+          img = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg: 'upload-img', photoTxtHide: 'photoTxtHide', delImgHide: '', flag1: 2 })
         }
       }
       this.setData({
@@ -118,41 +116,46 @@ Component({
         url: 'comm/bankHeadOffice',
         method: 'get',
       }
-      util.http(params2).then(res => {
-        this.setData({
-          bankArr: res.data,
-          bankCode: merchantsInfoStorage[7].banks[0].bankCode
-        })
-        for (let i = 0; i < res.data.length; i++) {
-          if (merchantsInfoStorage[7].banks[0].bankCode == res.data[i].bankCode) {
-            this.setData({ bankIndex: i });
-            break;
-          }
-        }
-        return merchantsInfoStorage[7].banks[0].bankCode;
-      }).then(bankCode => {
-        params2.url = "comm/bankBranch";
-        params2.data = { bankCode: bankCode, cityCode: this.data.bankCityId };
+      if (merchantsInfoStorage[7].banks.length>0){
         util.http(params2).then(res => {
+          console.log(res)
           this.setData({
-            bankSubArr: res.data,
-            branchBankCode: merchantsInfoStorage[7].banks[0].branchBankCode
+            bankArr: res.data,
+            bankCode: merchantsInfoStorage[7].banks[0].bankCode
           })
           for (let i = 0; i < res.data.length; i++) {
-            if (merchantsInfoStorage[7].banks[0].branchBankCode == res.data[i].branchBankCode) {
-              this.setData({ bankSubIndex: i });
+            if (merchantsInfoStorage[7].banks[0].bankCode == res.data[i].bankCode) {
+              this.setData({ bankIndex: i });
               break;
             }
           }
-        })
-      });
+          return merchantsInfoStorage[7].banks[0].bankCode;
+        }).then(bankCode => {
+          params2.url = "comm/bankBranch";
+          params2.data = { bankCode: bankCode, cityCode: this.data.bankCityId };
+          util.http(params2).then(res => {
+            this.setData({
+              bankSubArr: res.data,
+              branchBankCode: merchantsInfoStorage[7].banks[0].branchBankCode
+            })
+            for (let i = 0; i < res.data.length; i++) {
+              if (merchantsInfoStorage[7].banks[0].branchBankCode == res.data[i].branchBankCode) {
+                this.setData({ bankSubIndex: i });
+                break;
+              }
+            }
+          })
+        });
+      }else{
+        this.initBank(params2);
+      }
     }else{
       let params = {
         url: 'comm/bankProvince.do',
         method: 'get',
       }
       util.http(params).then(res => {
-        console.log(res)
+        console.log(res)  
         this.setData({
           provinceArr: res.data,
           bankProvinceId: res.data[0].bankProvinceId
@@ -172,25 +175,7 @@ Component({
           url: 'comm/bankHeadOffice',
           method: 'get',
         }
-        util.http(params2).then(res => {
-          console.log(res)
-          this.setData({
-            bankArr: res.data,
-            bankCode: res.data[0].bankCode
-          })
-          return res.data[0].bankCode;
-        }).then(bankCode => {
-          params2.url = "comm/bankBranch";
-          params2.data = { bankCode: bankCode, cityCode: this.data.bankCityId };
-          console.log(params2)
-          util.http(params2).then(res => {
-            console.log(res)
-            this.setData({
-              bankSubArr: res.data,
-              // branchBankCode: res.data[0].cityCode
-            })
-          })
-        });
+        this.initBank(params2);
       });
     }
   },
@@ -202,8 +187,27 @@ Component({
     navBack() {
       wx.navigateBack({ delta: 1 })
     },
-    bankChange(e){
 
+    initBank(params2){//初始化银行信息
+      util.http(params2).then(res => {
+        console.log(res)
+        this.setData({
+          bankArr: res.data,
+          bankCode: res.data[0].bankCode
+        })
+        return res.data[0].bankCode;
+      }).then(bankCode => {
+        params2.url = "comm/bankBranch";
+        params2.data = { bankCode: bankCode, cityCode: this.data.bankCityId };
+        console.log(params2)
+        util.http(params2).then(res => {
+          console.log(res)
+          this.setData({
+            bankSubArr: res.data,
+            // branchBankCode: res.data[0].cityCode
+          })
+        })
+      });
     },
     provinceChange: function (e) {//省选择
       let bankProvinceId = this.data.provinceArr[e.detail.value].bankProvinceId;//e.currentTarget.dataset.provinceid;
@@ -267,9 +271,11 @@ Component({
       })
     },
     bankSubChange: function (e) {//开户支行选择
+      console.log(e.detail.value); 
+      console.log(this.data.bankSubArr);
       this.setData({
         bankSubIndex: e.detail.value,
-        branchBankCode: this.data.banSubkArr[e.detail.value].branchbankcode
+        branchBankCode: this.data.bankSubArr[e.detail.value].branchBankCode
       })
     },
     bindPickerChange: function (e) {//结算类型
@@ -306,7 +312,8 @@ Component({
           that.setData({
             tempFilePaths: res.tempFilePaths[0],
             uploadImg: 'upload-img',
-            uploadTxt: false
+            photoTxtHide: 'photoTxtHide',
+            delImgHide: ''
           })
           let params = {
             url: 'common/upload.do',
@@ -322,38 +329,13 @@ Component({
       })
     },
     nextFun() {
-      if (!util.bankNo(this.data.bankNo)) {
-        wx.showToast({
-          title: "请正确输入银行卡号！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
-      }
-      // if (!this.data.bankName) {
-      //   wx.showToast({
-      //     title: "请正确输入开户银行！",
-      //     icon: 'none',
-      //     duration: 3000
-      //   })
-      //   return;
-      // }
-      // if (!this.data.bankNameSub || this.data.bankNameSub.length > 50) {
-      //   wx.showToast({
-      //     title: "请正确输入开户支行！",
-      //     icon: 'none',
-      //     duration: 3000
-      //   })
-      //   return;
-      // }
+      if (!util.bankNo(this.data.bankNo)) {util.tips('请正确输入银行卡号！'); return;}
+      // if (!this.data.bankName) {util.tips('请正确输入开户银行！'); return;}
+      // if (!this.data.bankNameSub || this.data.bankNameSub.length > 50) {util.tips('请正确输入开户支行！'); return;}
       if (!this.data.accountName || this.data.accountName.length > 50) {
-        wx.showToast({
-          title: "请正确输入开户人！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
+        util.tips('请正确输入开户人！'); return;
       }
+      if (!this.data.photo) {util.tips('请上传照片！'); return;}
 
       let arr = [];
       if (this.data.index == 0) { 
@@ -375,8 +357,6 @@ Component({
       // return;
       wx.navigateTo({ url: '/pages/certificate/certificate' });
     },
-    // bankName(e) { this.setData({ bankName: e.detail.value }); },
-    // bankNameSub(e) { this.setData({ bankNameSub: e.detail.value }); },
     back() {
       wx.navigateBack({ delta: 1 });
     },
@@ -385,11 +365,7 @@ Component({
       let val = e.detail.value;
       // if (!val || !bank.bankInfo(e.detail.value).bankName) {
       if (!util.bankNo(val)) {
-        wx.showToast({
-          title: "请正确输入银行卡号！",
-          icon: 'none',
-          duration: 3000
-        })
+        util.tips('请正确输入银行卡号！'); return;
       } else {
         for (let i = 0; i < this.data.bankArr.length; i++){
           this.setData({//由于本地bankiInfo.js中的银行卡号与数据库中的银行卡号不一致所以验证存在问题
@@ -411,22 +387,19 @@ Component({
     accountName(e) {//验证开户人
       let val = util.nameVerifycation(e.detail.value);
       if (!val) {
-        // this.setData({ popErrorMsg: "开户人有误！" });
-        // this.ohShitfadeOut();
-        wx.showToast({
-          title: "请正确输入开户人！",
-          icon: 'none',
-          duration: 3000
-        })
+        util.tips('请正确输入开户人！'); return;
       } else {
         this.setData({ accountName: e.detail.value });
       }
     },
-    // ohShitfadeOut() {
-    //   let fadeOutTimeout = setTimeout(() => {
-    //     this.setData({ popErrorMsg: '' });
-    //     clearTimeout(fadeOutTimeout);
-    //   }, 3000);
-    // },
+    delImg(e) {
+      this.setData({
+        uploadImg: '',
+        photoTxtHide: '',
+        photo: '',
+        delImgHide: 'delImgHide',
+        tempFilePaths: 'images/add.png'
+      });
+    },
   }
 })

@@ -1,0 +1,180 @@
+.navbar{
+  display: flex;
+  align-items: center;
+  background-color: #699dd7;
+  width: 100%;
+  height: 100rpx;
+  padding-top: 40rpx;
+  padding-left: 10rpx;
+  position: fixed;
+  z-index: 999;
+}
+.navbar image{
+  width: 22rpx;
+  height: 32rpx;
+  padding: 8rpx 20rpx 0 20rpx;
+}
+.navbar text{
+  color: #fff !important;
+  font-size: 38rpx !important;
+}
+
+.increase-page {
+  padding-top: 160rpx;
+  background-color: #eee;
+}
+.placeholderStyle{
+  color:#ccc;
+}
+.increase-form {
+  background-color: #fff;
+  padding: 0 30rpx;
+}
+.typeHide{display: none !important;}
+.increase-form .item {
+  display: flex;
+  font-size: 30rpx;
+  padding: 33rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.increase-form .item>text {
+  width: 240rpx;
+}
+
+.increase-form .item.type picker {
+  flex: 1;
+  text-align: right;
+  color: #666;
+}
+
+.increase-form .item.type picker .icon {
+  display: inline-block;
+  width: 26rpx;
+  height: 15rpx;
+}
+
+.increase-form .item input {
+  flex: 1;
+  text-align: right;
+}
+
+.upload-form {
+  background-color: #eee;
+  padding: 0 30rpx 30rpx 30rpx;
+}
+
+.upload-head {
+  padding: 32rpx 0;
+}
+
+.upload-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-items>view {
+  width: 320rpx;
+  height: 195rpx;
+  background-color: #fff;
+}
+
+.increase-form .item.picker-date {
+  justify-content: space-between;
+}
+
+.increase-form .item.picker-date .picker-date-ops {
+  color: #999;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.increase-form .item.picker-date .picker-date-ops picker {
+  display: inline-block;
+  font-size: 26rpx;
+  flex: 1;
+}
+
+.right {
+  text-align: right;
+}
+
+.increase-form .item.picker-date .check {
+  width: 110rpx;
+  color: #666;
+}
+
+.submit {
+  background-color: #699dd7;
+  height: 77rpx;
+  line-height: 77rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 4rpx;
+  margin: 80rpx 30rpx 0 30rpx;
+}
+
+.cancel {
+  color: #699dd7;
+  line-height: 77rpx;
+  height: 77rpx;
+  text-align: center;
+  margin: 22rpx 0 46rpx 0;
+  background-color: #fff;
+  border-radius: 4rpx;
+}
+
+/* 自定义checkbox样式 */
+
+checkbox .wx-checkbox-input {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  bottom: 3rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+  transform: translate(-50%, -50%) scale(0.8);
+  -webkit-transform: translate(-50%, -50%) scale(0.8);
+}
+
+.upload-items-ele {
+  text-align: center;
+  border: 1rpx dashed #eee;
+  position: relative;
+}
+
+.upload-items-ele .upload-icon {
+  margin-top: 30rpx;
+}
+
+.upload-items-ele text {
+  font-size: 26rpx;
+  color: #699dd7;
+}
+
+.upload-items-ele image {
+  width: 100%;
+  height: 100%;
+}
+
+.upload-items-ele .close {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  right: -18rpx;
+  top: -18rpx;
+  border-radius: 50%;
+  background-color:#ccc;
+}
+
+.upload-items-ele .close site-icon {
+  position: relative;
+  bottom: 8rpx;
+}

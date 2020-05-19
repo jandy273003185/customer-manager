@@ -41,7 +41,8 @@ Component({
     total: 0,//总记录数
     loaded:'',
     loadTxt:'',
-    timeStamp:''
+    timeStamp:'',
+    loadMoreFlag: false
   },
 
   attached(){
@@ -66,6 +67,7 @@ Component({
     
     // 商户列表
     queryList() {
+      wx.showLoading();
       this.setData({ loaded: '' })
       let params = {
         url: 'comm/selectCommercialInfo.do',
@@ -81,10 +83,11 @@ Component({
 
         }
       }
-      console.log(params);
+      // console.log(params);
       util.http(params).then(data => {
         if (data) {
-          console.log(data)
+          wx.hideLoading();
+          // console.log(data)
           this.setData({ total: data.total });
           let list = data.data;
           if (list.length == 0) {
@@ -93,6 +96,7 @@ Component({
             this.setData({ loadTxt: "已加载全部数据", loaded: 'loaded' })
           }
           let arr = this.data.listArr;
+          if (!this.data.loadMoreFlag) { arr = []; this.setData({ loadMoreFlag: false }); }
           for (var i = 0; i < list.length; i++) {
             // list[i]["createTime"] = util.dateFormat("YYYY-mm-dd", new Date(list[i]["createTime"]));
             if (list[i]["state"] == "00") {
@@ -156,7 +160,7 @@ Component({
       if (this.data.listArr.length >= this.data.total) { return };
       let pageNum = this.data.pageNum;
       ++pageNum;
-      this.setData({ pageNum });
+      this.setData({ loadMoreFlag: true, pageNum });
       this.queryList();
     },
     onCheck(e){//状态查询（全部。。。）
@@ -227,6 +231,25 @@ Component({
     },
     cancel() {
       this.setData({ dateHide: 'dateHide'});
-    }
+    },
+    touchStart(e) {
+      this.setData({
+        "startX": e.changedTouches[0].clientX,
+        "startY": e.changedTouches[0].clientY
+      });
+    },
+    touchEnd(e) {
+      let endX = e.changedTouches[0].clientX;
+      let endY = e.changedTouches[0].clientY;
+      if (util.getTouchData(endX, endY, this.data.startX, this.data.startY) == "left") {
+        wx.switchTab({
+          url: '/pages/deal/deal',
+        })
+      } else if (util.getTouchData(endX, endY, this.data.startX, this.data.startY) == "right"){
+        wx.switchTab({
+          url: '/pages/homePage/homePage',
+        })
+      }
+    },
   }
 })

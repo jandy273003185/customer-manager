@@ -92,50 +92,49 @@ Component({
         wx.navigateTo({ url: '/pages/merchantsIntoPieces/merchantsIntoPieces?basicObj=' + basicObj });
         return;
       }*/
-//       let all =  {
-//         merchantAccount:  '15611111111',
-//         custType:  '0',
-//         custName:  '七月有风',
-//         shortName:  '11',
-//         contactPhone:  '1111',
-//         province:  '江西省',
-//         city:  '赣州市',
-//         country:  '章贡区',
-//         custAdd:  '经济开发区',
-//         businessLicense:  'S0612018016288G',
-//         businessTermStart:  '2018-11-13',
-//         businessTermEnd:  '长期',
-//         representativeName:  "Holly",
-//         representativeCertNo:  "441802198909126920",
-//         idTermStart:  "2017.11.29",
-//         idTermEnd:  "2037.11.29",
-//         contactName:  "Hollu",
-//         contactMobile:  '15948545422',
-//         compMainAcct:  "622021510009214444",
-//         compAcctBank:  "工商银行",
-//         bankProvinceName: "江西省",
-//         bankCityName:  "赣州市",
-//         branchBank:  "大余支行",
-//         compMainAcctType:  "02",
-//         dragonfly:  null,
-//         scan:  true,
-//         app:  "",
-//         createId: "25",
-//         custScanCopys: JSON.stringify([
-//           { certifyType: '00', anCopyPath: "http://192.168.1.159:8082/pic/5a53f58b-24b9-40d4-9f1a-a14fbd564c94微信图片_20191107133721.jpg" , certifyNo:'532523212365478954'}
-//         ]),
-//         productInfos: JSON.stringify([
-//           { productId: 8 , productRate: 0.1 ,sn: '1001' },
-//           { productId: 1, productRate: 0.2, sn: '' },
-//           { productId: 2, productRate: 0.3, sn: '' }
-//         ])
-//        };
+      let all =  {
+        merchantAccount:  '15611111150',
+        custType:  '0',
+        custName:  '七月有风',
+        shortName:  '11',
+        contactPhone:  '1111',
+        province:  '江西省',
+        city:  '赣州市',
+        country:  '章贡区',
+        custAdd:  '经济开发区',
+        businessLicense:  'S0612018016288G',
+        businessTermStart:  '2018-11-13',
+        businessTermEnd:  '长期',
+        representativeName:  "Holly",
+        representativeCertNo:  "441802198909126920",
+        idTermStart:  "2017.11.29",
+        idTermEnd:  "2037.11.29",
+        contactName:  "Hollu",
+        contactMobile:  '15948545422',
+        compMainAcct:  "622021510009214444",
+        compAcctBank:  "工商银行",
+        bankProvinceName: "江西省",
+        bankCityName:  "赣州市",
+        branchBank:  "大余支行",
+        compMainAcctType:  "02",
+        dragonfly:  null,
+        scan:  true,
+        app:  "",
+        createId: "25",
+        custScanCopys: JSON.stringify([{ scanCopyPath: 11111111, flag: 1, certifyType: 2, certifyNo: 3 }]),
+        productInfos: JSON.stringify([
+          { productId: 8 , productRate: 0.1 ,sn: '1001' },
+          { productId: 1, productRate: 0.2, sn: '' },
+          { productId: 2, productRate: 0.3, sn: '' }
+        ])
+       };
       this.storage();
       let params = {
         url: this.data.url,
         method: 'post',
         // contentType: 'application/json',
-        data: this.data.tdCustInfo
+        data: this.data.tdCustInfo,
+        // data:all
       };
       console.log(params);
       wx.removeStorageSync('basicStorage');

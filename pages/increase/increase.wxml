@@ -1,0 +1,239 @@
+<!--新增-->
+<view class="navbar">
+  <image src="/images/back.png" bindtap="navBack"/>
+  <text>{{title}}</text>
+</view>
+<view class="increase-page">
+  <view class="increase-form">
+    <view class="item type">
+      <text class="asterisk">类型</text>
+      <picker bindchange="bindPickerChange" value="{{typeIndex}}" range="{{merchantsTypeArr}}">
+        <view>
+          {{merchantsTypeArr[typeIndex]}}
+          <view class="icon">
+            <site-icon iconClass="icon-iconxia" color="#000"></site-icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="item type">
+      <text class="asterisk">级别</text>
+      <picker bindchange="togglecommerceType" value="{{commerceTypeIndex}}" range="{{commerceType}}">
+        <view>
+          {{commerceType[commerceTypeIndex]}}
+          <view class="icon">
+            <site-icon iconClass="icon-iconxia" color="#000"></site-icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+
+    <view class="item">
+      <text class="asterisk">名称</text>
+      <input data-name="custName" placeholder="请输入公司个人名字" placeholder-class="placeholderStyle" bindinput="bindKeyInput" />
+    </view>
+
+    <view class="item">
+      <text class="asterisk">手机号</text>
+      <input data-name="merchantMobile" placeholder="请输入手机号码" placeholder-class="placeholderStyle" maxlength="11" type="number" bindinput="bindKeyInput" />
+    </view>
+
+    <view class="item">
+      <text class="asterisk">邮箱</text>
+      <input data-name="email" placeholder="请输入邮箱" placeholder-class="placeholderStyle" bindinput="bindKeyInput" />
+    </view>
+  </view>
+
+  <view class="upload-form">
+    <view class="asterisk upload-head">法人身份证照片</view>
+    <view class="upload-items">
+      <block>
+        <view wx:if="{{idCardImages.front}}" class="upload-items-ele">
+          <view class="close" data-type="idCard@front" bindtap="removeImage">
+            <site-icon iconClass="icon-iconshanchu" color="#fff" />
+          </view>
+          <image mode="aspectFill" src="{{idCardImages.front}}" bindtap="uploadChoose" data-type="idCard@front"></image>
+        </view>
+
+        <view wx:else class="upload-items-ele" bindtap="uploadChoose" data-type="idCard@front">
+          <view class="upload-icon">
+            <site-icon iconClass="icon-iconjiahao" color="#699dd7" size="84" />
+          </view>
+          <text>法人身份证正面照</text>
+        </view>
+      </block>
+
+      <block>
+        <view wx:if="{{idCardImages.reverse}}" class="upload-items-ele">
+          <view class="close" data-type="idCard@reverse" bindtap="removeImage">
+            <site-icon iconClass="icon-iconshanchu" color="#fff" />
+          </view>
+          <image mode="aspectFill" src="{{idCardImages.reverse}}" bindtap="uploadChoose" data-type="idCard@reverse"></image>
+        </view>
+
+        <view wx:else class="upload-items-ele" bindtap="uploadChoose" data-type="idCard@reverse">
+          <view class="upload-icon">
+            <site-icon iconClass="icon-iconjiahao" color="#699dd7" size="84" />
+          </view>
+          <text>法人身份证反面照</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="increase-form">
+    <view class="item ">
+      <text>法人名字</text>
+      <input data-name="representativeName" placeholder="请输入法人名字" value="{{representativeName}}" placeholder-class="placeholderStyle" bindinput="bindKeyInput" />
+    </view>
+
+    <view class="item ">
+      <text class="asterisk">法人身份证号码</text>
+      <input data-name="representativeCertNo" placeholder="请输入法人身份证号码" value="{{representativeCertNo}}" placeholder-class="placeholderStyle" type="idcard" maxlength="18" bindinput="bindKeyInput" />
+    </view>
+
+    <view class="item picker-date">
+      <text>身份证有效期</text>
+      <view class="picker-date-ops">
+        <picker mode="date" value="{{idTermStart}}" bindchange="chooseDate" data-type="idTermStart" start="" end="{{idTermEnd}}">
+          <view class="right">{{idTermStart ? idTermStart : '日期选择'}}</view>
+        </picker>
+        ~
+        <picker mode="date" value="{{idTermEnd}}" bindchange="chooseDate" data-type="idTermEnd" start="{{idTermStart}}" end="">
+          <view>{{idTermEnd ? idTermEnd : '日期选择'}}</view>
+        </picker>
+      </view>
+
+      <view class="check">
+        <checkbox bindtap="toggleIDCard" checked="{{idCard}}"></checkbox>长期
+      </view>
+    </view>
+  </view>
+
+  <view class="upload-form {{typeIndex == 0 ? 'typeHide':''}}">
+    <view class="upload-head">营业执照</view>
+    <view class="upload-items">
+      <view wx:if="{{businessImages.front}}" class="upload-items-ele">
+        <view class="close" data-type="business@front" bindtap="removeImage">
+          <site-icon iconClass="icon-iconshanchu" color="#fff" />
+        </view>
+        <image mode="aspectFill" src="{{businessImages.front}}" bindtap="uploadChoose" data-type="business@front"></image>
+      </view>
+
+      <view wx:else class="upload-items-ele" bindtap="uploadChoose" data-type="business@front">
+        <view class="upload-icon">
+          <site-icon iconClass="icon-iconjiahao" color="#699dd7" size="84" />
+        </view>
+        <text>上传营业执照</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="increase-form">
+    <view class="item {{typeIndex == 0 ? 'typeHide':''}}">
+      <text>营业执照编号</text>
+      <input data-name="businessLicense" placeholder="请输入营业执照编号" value="{{businessLicense}}" placeholder-class="placeholderStyle" bindinput="bindKeyInput" />
+    </view>
+
+    <view class="item picker-date {{typeIndex == 0 ? 'typeHide':''}}">
+      <text>营业执照有效期</text>
+      <view class="picker-date-ops">
+        <picker mode="date" value="{{businessTermStart}}" bindchange="chooseDate" data-type="businessTermStart" start="" end="{{businessTermEnd}}">
+          <view class="right">{{businessTermStart ? businessTermStart : '日期选择'}}</view>
+        </picker>
+        ~
+        <picker mode="date" value="{{businessTermEnd}}" bindchange="chooseDate" data-type="businessTermEnd" start="{{businessTermStart}}" end="">
+          <view>{{businessTermEnd ? businessTermEnd : '日期选择'}}</view>
+        </picker>
+      </view>
+
+      <view>
+        <checkbox bindtap="toggleLicense" checked="{{license}}"></checkbox>长期
+      </view>
+    </view>
+
+    <view class="item">
+      <text class="asterisk">银行卡号</text>
+      <input type="number" data-name="bankNo" placeholder="请输入银行卡号" value="{{bankNo}}" placeholder-class="placeholderStyle" bindblur="bankNo" />
+    </view>
+    <view class="item type">
+      <text class="asterisk">开户银行</text>
+      <picker bindchange="bankChange" value="{{bankIndex}}" range="{{bankArr}}" range-key="bankName"  data-bankCode="{{bankArr[bankIndex].bankCode}}">
+        <view>
+          {{bankArr[bankIndex].bankName}}
+          <view class="icon">
+            <site-icon iconClass="icon-iconxia" color="#000"></site-icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="item type">
+      <text class="asterisk">开户省份</text>
+      <picker bindchange="provinceChange" value="{{provinceIndex}}" range="{{provinceArr}}" range-key="bankProvinceName"  data-bankProvinceId="{{provinceArr[provinceIndex].bankProvinceId}}">
+        <view>
+          {{provinceArr[provinceIndex].bankProvinceName}}
+          <view class="icon">
+            <site-icon iconClass="icon-iconxia" color="#000"></site-icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="item type">
+      <text class="asterisk">开户城市</text>
+      <picker bindchange="cityChange" value="{{cityIndex}}" range="{{cityArr}}" range-key="bankCityName"  data-bankCityId="{{cityArr[cityIndex].bankCityId}}">
+        <view>
+          {{cityArr[cityIndex].bankCityName}}
+          <view class="icon">
+            <site-icon iconClass="icon-iconxia" color="#000"></site-icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="item type">
+      <text>开户支行</text>
+      <picker bindchange="bankSubChange" value="{{bankSubIndex}}" range="{{bankSubArr}}" range-key="branchBankName"  data-branchBankCode="{{bankSubArr[bankSubIndex].branchBankCode}}">
+        <view>
+          {{bankSubArr[bankSubIndex].branchBankName}}
+          <view class="icon">
+            <site-icon iconClass="icon-iconxia" color="#000"></site-icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="item">
+      <text class="asterisk">开户人</text>
+      <input data-name="bankNo" placeholder="请输入开户人" value="{{accountName}}" placeholder-class="placeholderStyle" bindblur="accountName" />
+    </view>
+    <view class="item type">
+      <text class="asterisk">结算类型</text>
+      <picker bindchange="billingTypeChange" value="{{index}}" range="{{billingTypeArr}}">
+        <view>
+          {{billingTypeArr[index]}}
+          <view class="icon">
+            <site-icon iconClass="icon-iconxia" color="#000"></site-icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="upload-form">
+    <view class="upload-head asterisk">{{photoType}}照片</view>
+    <view class="upload-items">
+      <view wx:if="{{billingImages.front}}" class="upload-items-ele">
+        <view class="close" data-type="billing@front" bindtap="removeImage">
+          <site-icon iconClass="icon-iconshanchu" color="#fff" />
+        </view>
+        <image mode="aspectFill" src="{{billingImages.front}}" bindtap="uploadChoose" data-type="billing@front"></image>
+      </view>
+
+      <view wx:else class="upload-items-ele" bindtap="uploadChoose" data-type="billing@front">
+        <view class="upload-icon">
+          <site-icon iconClass="icon-iconjiahao" color="#699dd7" size="84" />
+        </view>
+        <text>上传{{photoType}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="submit" bindtap="goToSubmit">提交</view>
+<view class="cancel" bindtap="goToCancel">取消</view>

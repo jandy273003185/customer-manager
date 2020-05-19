@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "merchantsIntoPieces-cmp": "/components/merchantsIntoPieces/index",
-    "hint-cmp": "/components/hint/index"
+    "merchantsIntoPieces-cmp": "/components/merchantsIntoPieces/index"
   }
 }

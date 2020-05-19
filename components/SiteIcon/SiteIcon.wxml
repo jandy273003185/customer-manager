@@ -1,0 +1,2 @@
+<!--自定义icon-->
+<view class="site-icon iconfont {{iconClass}}" style='color:{{color}};font-size:{{size}}rpx;'></view>

@@ -1,6 +1,5 @@
 <!--pages/merchantsIntoPieces/merchantsIntoPieces.wxml-->
 <view class="container">
-  <merchantsIntoPieces-cmp  show="{{contactPhone}}" custId="{{custId}}" pageName="{{pageName}}"/>
-  <!-- <block><hint-cmp id="hint"/></block> -->
+    <merchantsIntoPieces-cmp show="{{contactPhone}}" custId="{{custId}}" pageName="{{pageName}}" />
+    <!-- <block><hint-cmp id="hint"/></block> -->
 </view>
-

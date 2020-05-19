@@ -1,0 +1,155 @@
+/* components/searchCommercialTenant/index.wxss */
+page{
+  background-color: #eeeeee;
+  overflow-y: hidden;
+}
+.deviceScroll{
+  overflow:scroll;
+  /* height: 500rpx; */
+  /* border: 1px solid red; */
+}
+.navbar{
+  display: flex;
+  align-items: center;
+  background-color: #699dd7;
+  width: 100%;
+  height: 100rpx;
+  padding-top: 40rpx;
+  padding-left: 10rpx;
+  position: fixed;
+  z-index: 999;
+}
+.navbar image{
+  width: 22rpx;
+  height: 32rpx;
+  padding: 8rpx 20rpx 0 20rpx;
+}
+.navbar text{
+  color: #fff !important;
+  font-size: 38rpx !important;
+}
+
+/* .container-up{
+  display: flex;
+  position: fixed;
+  height: 60rpx;
+  justify-content: space-between;
+  align-items: center;
+  padding: 140rpx 20rpx 20rpx 20rpx;
+  color: #9b9797;
+} */
+.container-up{
+  display: flex;
+  padding: 150rpx 30rpx 10rpx 30rpx;
+  color: #999999;
+  font-family: SourceHanSansCN-Regular;
+}
+.type{
+  width: 230rpx;
+  text-align: left;
+}
+.company{
+  flex-grow: 1;
+}
+.status{
+  width: 220rpx;
+  text-align: right;
+}
+
+.commercialTenantList{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-top: 0.1px solid #f6f6f6;
+  background-color: #fff;
+}
+.typeList{
+  width: 170rpx;
+  font-size: 32rpx;
+  color: #333333;
+}
+.companyList{
+  flex-grow: 1;
+  text-align: left;
+  padding: 0 10rpx;
+  color: #999999;
+  font-size: 30rpx;
+  width: 300rpx;
+}
+.commercialTenantText{
+  /* width: 180rpx; */
+  text-align: right;
+  font-size: 30rpx;
+  color: #fff;
+}
+.commercialTenantText view{
+  padding: 6rpx 16rpx;
+  border-radius: 6rpx;
+}
+.addService{
+  display: flex;
+  /* margin: 60rpx 30rpx; */
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #699dd7; 
+  padding: 16rpx;
+  color: #699dd7; 
+  font-size: 36rpx;
+  position: fixed;
+  left: 14rpx;
+  bottom: 10rpx;
+  width: 92%;
+}
+.add{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#699dd7; 
+  color: #fff;
+  padding-bottom: 6rpx;
+  font-size: 58rpx;
+  width: 52rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 50%; 
+  margin-right: 30rpx;
+}
+
+.bg{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.bg image{
+  padding: 100rpx 0 40rpx 50rpx;
+  width: 300rpx;
+  height: 200rpx;
+}
+.bg text{
+  font-size: 28rpx;
+  color: #817f7f;
+}
+.hide,.isHide{
+  display: none;
+}
+.blue{
+  background-color: #699dd7;
+}
+.gray{
+   background-color: #999999;
+}
+.red{
+   background-color: #e96b6b;
+}
+.green{
+   background-color: #469275;
+}
+.loaded{
+  display: flex;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #929292;
+  padding: 10rpx 0 20rpx 0;
+}

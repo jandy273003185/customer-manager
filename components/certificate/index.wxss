@@ -62,75 +62,71 @@ page{
   /* font-size: 28rpx; */
   padding: 20rpx;
 }
-.productList{
+.product{
+  border-radius: 10rpx;
+  padding: 0rpx 20rpx 20rpx 20rpx;
   background-color: #fff;
-  padding: 0rpx 30rpx 0 20rpx;
-  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+.productHide{
+  display: none;
 }
 checkbox-group{
   display: flex;
   flex-direction: column;
 }
+.checkboxProduct{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.1px solid #f6f6f6;
+  flex-wrap: wrap;
+}
 .checkbox{
   display: flex;
   align-items: center;
-  border-bottom: 0.1px solid #f6f6f6;
   padding: 18rpx 0;
-}
-checkbox{
-  scale: 0.8;
-}
-
-/*复选框外框样式*/
-wx-checkbox .wx-checkbox-input {
-  width: 20rpx;
-  height: 20rpx;
-  border: 4rpx solid #999;
-  border-radius: 100%;
-}
-/*复选框外框选中样式*/
-wx-checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-  border-color: #3cbcee !important;
-}
-/*复选框选中后内部样式*/
-wx-checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
-  width: 60%;
-  height: 60%;
-  background: #3cbcee!important;
-  border-radius: 100%;
-  content: '';
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 .rateView{
   display: flex;
   align-items: center;
-  position: absolute;
+  /* position: absolute; */
   line-height: 84rpx;
 }
-.rateMargin{
-  margin: -342rpx 0 0 280rpx;
-}
-.rateMargin2{
-  margin: -166rpx 0 0 280rpx;
-}
-.rateMargin3{
-  margin: -82rpx 0 0 280rpx;
-}
+
 .rate{
   color: #b4b3b3;
 }
 .rateVal{
   border-bottom: 0.1rpx solid #699dd7;
-  width: 296rpx;
+  width: 240rpx;
   text-align: center;
-  padding: 16rpx 0;
+  padding: 20rpx 0;
   color: #b4b3b3;
 }
 .rate2{
-  position: absolute;
   right: 0;
   color: #b4b3b3;
+}
+/*复选框外框样式*/
+checkbox .wx-checkbox-input {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #999;
+  border-radius: 100%;
+}
+/*复选框外框选中样式*/
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  border-color: #3cbcee;
+}
+/*复选框选中后内部样式*/
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 60%;
+  height: 60%;
+  background: #3cbcee;
+  border-radius: 100%;
+  content: '';
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 
 .further{
@@ -139,30 +135,8 @@ wx-checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   padding: 20rpx 20rpx 0 20rpx;
 }
 
-.photo{
-  padding: 26rpx 0rpx 0rpx 20rpx;
-}
 .red{
   color: red;
-}
-.photo-content{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 360rpx;
-  height: 200rpx;
-  margin-top: 18rpx;
-  background-color: #fff;
-}
-.photo-content image{
-  width: 50rpx;
-  height: 50rpx;
-}
-.photo-content view{
-  color: #699dd7;
-  font-size: 28rpx;
-  margin-top: 10rpx;
 }
 .next{
   background-color: #699dd7;
@@ -175,32 +149,34 @@ wx-checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   width: 100% !important;
   height: 100% !important;
 }
-
+.photoTxtHide,.delImgHide{
+  display: none;
+}
+.del-img{
+  position:absolute;
+  width:30rpx;
+  height:30rpx;
+  left:344rpx;
+}
+.odd-img{
+  left:708rpx;
+}
+.sn{
+  margin-left: 306rpx;
+}
+.snDisplay{
+  display: none;
+}
+.sn input{
+  width: 380rpx;
+  text-align: right;
+}
 .back{
   display: flex;
   justify-content: center;
   color: #699dd7;
   font-size: 30rpx;
   padding: 40rpx;
-}
-.sn{
-  height: 240rpx;
-  display: flex;
-  align-items: top;
-  margin-top: -35px
-}
-.snDisplay{
-  position: absolute;
-  display: flex;
-  margin-top: -250rpx;
-  right: 16rpx;
-}
-.snDispla input{
-  width: 300rpx !important;
-}
-.snVal{
-  width: 430rpx;
-  text-align: right;
 }
 .ad_popError{ 
   background: #de352d; 

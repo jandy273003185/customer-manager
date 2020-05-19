@@ -210,7 +210,7 @@ checkbox-group{
   border-bottom: 0.1rpx solid #699dd7;
   width: 240rpx;
   text-align: center;
-  padding: 16rpx 0;
+  padding: 20rpx 0;
   color: #b4b3b3;
 }
 .rate2{
@@ -253,16 +253,31 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   color: #fff;
   width: 95%;
   font-size: 30rpx;
-  margin: 100rpx 20rpx 0rpx 20rpx;
+  margin: 100rpx 20rpx 20rpx 20rpx;
 }
 .upload-img{
   width: 100% !important;
   height: 100% !important;
 }
-.snDisplay{
+.photoTxtHide,.delImgHide{
+  display: none;
+}
+.del-img{
+  position:absolute;
+  width:30rpx;
+  height:30rpx;
+  left:344rpx;
+}
+.odd-img{
+  left:708rpx;
+}
+.sn{
   margin-left: 258rpx;
 }
-.snDisplay input{
+.snDisplay{
+  display: none;
+}
+.sn input{
   width: 380rpx;
   text-align: right;
 }

@@ -4,10 +4,11 @@
 </view>
 
 <view class="top">
-  <image src="images/person.png"/>
+  <!-- <image src="images/person.png"/> -->
+  <view class="person"><open-data type="userAvatarUrl"/></view>
   <view class="info">
     <view class="company">七月有风有限公司</view>
-    <view class="saleman">业务员: 小高</view>
+    <view class="saleman">业务员: <open-data type="userNickName"></open-data></view>
   </view>
 </view>
 

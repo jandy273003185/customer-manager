@@ -170,7 +170,7 @@ Component({
         data: {
           userName: wx.getStorageSync('userStorage').username == undefined ? this.data.mobileValue : wx.getStorageSync('userStorage').username,
           password: wx.getStorageSync('userStorage').pwd == undefined ? this.data.pwdValue : wx.getStorageSync('userStorage').pwd,
-          openId: wx.getStorageSync('userStorage').pwd == undefined ? this.data.openId : wx.getStorageSync('userStorage').openId,
+          openId: wx.getStorageSync('userStorage').openId == undefined ? this.data.openId : wx.getStorageSync('userStorage').openId,
           roleCode: 'cust'
         }
       }

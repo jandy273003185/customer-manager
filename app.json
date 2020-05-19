@@ -1,59 +1,67 @@
 {
-  "pages": [
-    "pages/homePage/homePage",
-    "pages/accountLogin/accountLogin",
-    "pages/merchantsInfo/merchantsInfo",
-    "pages/hint/hint",
-    "pages/deal/deal",
-    "pages/navBottom/navBottom",
-    "pages/my/my",
-    "pages/commercialTenant/commercialTenant",
-    "pages/message/message",
-    "pages/searchCommercialTenant/searchCommercialTenant",
-    "pages/alertDate/alertDate",
-    "pages/alert/alert",
-    "pages/checkDetails/checkDetails",
-    "pages/certificate/certificate",
-    "pages/verificationCodeLogin/verificationCodeLogin",
-    "pages/navbar/navbar",
-    "pages/merchantsIntoPieces/merchantsIntoPieces",
-    "pages/billingInfo/billingInfo",
-    "pages/legalPerson/legalPerson"
-  ],
-  "window": {
-    "navigationBarBackgroundColor": "#699dd7",
-    "navigationBarTitleText": "客户经理",
-    "navigationBarTextStyle": "white",
-    "navigationStyle": "custom",
-    "backgroundColor": "#ffffff",
-    "enablePullDownRefresh": true
-  },
-  "sitemapLocation": "sitemap.json",
-  "tabBar": {
-    "color": "#2f2f2f",
-    "selectedColor": "#216d8d",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/homePage/homePage",
-        "text": "主页",
-        "iconPath": "images/nav_icon_01.png",
-        "selectedIconPath": "images/nav_icon_05.png"
-      },
-      {
-        "pagePath": "pages/commercialTenant/commercialTenant",
-        "text": "商户",
-        "iconPath": "images/nav_icon_02.png",
-        "selectedIconPath": "images/nav_icon_06.png"
-      },
-      {
-        "pagePath": "pages/deal/deal",
-        "text": "交易",
-        "iconPath": "images/nav_icon_03.png",
-        "selectedIconPath": "images/nav_icon_07.png"
-      }
+    "pages": [
+        "pages/homePage/homePage",
+        "pages/accountLogin/accountLogin",
+        "pages/merchantsInfo/merchantsInfo",
+        "pages/deal/deal",
+        "pages/navBottom/navBottom",
+        "pages/my/my",
+        "pages/commercialTenant/commercialTenant",
+        "pages/message/message",
+        "pages/searchCommercialTenant/searchCommercialTenant",
+        "pages/alertDate/alertDate",
+        "pages/alert/alert",
+        "pages/checkDetails/checkDetails",
+        "pages/certificate/certificate",
+        "pages/verificationCodeLogin/verificationCodeLogin",
+        "pages/navbar/navbar",
+        "pages/merchantsIntoPieces/merchantsIntoPieces",
+        "pages/billingInfo/billingInfo",
+        "pages/legalPerson/legalPerson",
+        "pages/providers/providers",
+        "pages/particulars/particulars",
+        "pages/increase/increase",
+        "pages/serviceManager/serviceManager"
     ],
-    "position": "bottom"
-  }
+    "window": {
+        "navigationBarBackgroundColor": "#699dd7",
+        "navigationBarTitleText": "客户经理",
+        "navigationBarTextStyle": "white",
+        "navigationStyle": "custom",
+        "backgroundColor": "#ffffff",
+        "enablePullDownRefresh": true
+    },
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "color": "#2f2f2f",
+        "selectedColor": "#216d8d",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [{
+                "pagePath": "pages/homePage/homePage",
+                "text": "主页",
+                "iconPath": "images/nav_icon_01.png",
+                "selectedIconPath": "images/nav_icon_05.png"
+            },
+            {
+                "pagePath": "pages/commercialTenant/commercialTenant",
+                "text": "商户",
+                "iconPath": "images/nav_icon_02.png",
+                "selectedIconPath": "images/nav_icon_06.png"
+            },
+            {
+                "pagePath": "pages/deal/deal",
+                "text": "商户交易",
+                "iconPath": "images/nav_icon_03.png",
+                "selectedIconPath": "images/nav_icon_07.png"
+            },
+            {
+              "pagePath": "pages/providers/providers",
+              "text": "服务商交易",
+              "iconPath": "images/nav_icon_04.png",
+              "selectedIconPath": "images/nav_icon_08.png"
+            }
+        ],
+        "position": "bottom"
+    }
 }

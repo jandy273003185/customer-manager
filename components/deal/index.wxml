@@ -3,7 +3,7 @@
   <text>{{title}}</text>
 </view>
 
-<view class="container-up">
+<view class="container-up" bindtouchstart='touchStart' bindtouchend="touchEnd">
   <view class="search">
     <image class="searchImg" src="/images/search.png"/>
     <input value="{{custName}}" bindconfirm="inputSearch" confirm-type="search" bindinput="inputEvent"/>
@@ -11,17 +11,17 @@
   </view>
 </view>
 
-<view class="status">
-  <view class="{{index==idx?'active':''}}" wx:for="{{dateArr}}" wx:key="" data-index="{{index}}" bindtap='onDate'>{{item.name}}
+<view class="status" bindtouchstart='touchStart' bindtouchend="touchEnd">
+  <view class="{{index==idx?'active':''}}" wx:for="{{dateArr}}" wx:key="id" data-index="{{index}}" bindtap='onDate'>{{item.name}}
   </view>
   
 </view>
 
-<view class="box {{dateHide}}">
+<view class="box {{dateHide}}" bindtouchstart='touchStart' bindtouchend="touchEnd">
   <view class="dialog">
     <text class="title">时间</text>
     <view class="time2">
-      <view class="selectedTime {{index==idx?'active':''}}" wx:for="{{timeArr}}" wx:key="" data-index="{{index}}" catchtap='onTime'>{{item.name}}
+      <view class="selectedTime {{index==idx?'active':''}}" wx:for="{{timeArr}}" wx:key="idx" data-index="{{index}}" catchtap='onTime'>{{item.name}}
       </view>
     </view>
     
@@ -50,19 +50,19 @@
   </view>
 </view>
 
-<view class="ranking">
+<view class="ranking" bindtouchstart='touchStart' bindtouchend="touchEnd">
   <view class="numView" bindtap="onSort" data-type="0">
-    <view>笔数排名</view>
-    <image src="images/ranking.png"/>
+    <view class="{{orderBy=='transactionNum desc'||orderBy=='transactionNum asc'?sortTitle:''}}">笔数排名</view>
+    <image src="/images/ranking.png"/>
   </view>
   <view class="moneyView" bindtap="onSort" data-type="1">
-    <view class="money">金额排名</view>
-    <image src="images/ranking.png"/>
+    <view class="money {{orderBy=='transactionAmount desc'||orderBy=='transactionAmount asc'?sortTitle:''}}">金额排名</view>
+    <image src="/images/ranking.png"/>
   </view>
 </view>
 
-<scroll-view  style ="height:{{warpHeight}};" scroll-y ="true" bindscrolltolower="loadMore" class='deviceScroll' >
-  <view class="list" wx:for="{{listArr}}" wx:key="{{index}}">
+<scroll-view  style ="height:{{warpHeight}};" scroll-y ="true" bindscrolltolower="loadMore" class='deviceScroll' bindtouchstart='touchStart' bindtouchend="touchEnd" >
+  <view class="list" wx:for="{{listArr}}" wx:key="custId">
     <view class="shop"><view>{{index+1}}</view><view>{{item.cust_name}}</view></view>
     <view class="num">{{item.transactionNum}} 笔</view>
     <view class="num right">{{item.transactionAmount}} 元</view>
@@ -76,8 +76,7 @@
       indexOf: false,
       toString: ''
     }
-    result.indexOf = arr.indexOf(arg) > -1;
-    return result;
+    return result.indexOf = arr.indexOf(arg) > -1;
   }
   module.exports.fn = fn;
 </wxs>

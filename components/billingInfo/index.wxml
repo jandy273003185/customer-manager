@@ -26,7 +26,7 @@
 <view class="middle">
   <view class="middle-item line">
     <view class="middle-item-title"><span style="color:red">*</span>银行卡号</view>
-    <input value="{{bankNo}}" placeholder="请输入银行卡号" placeholder-style="color:#ccc;" bindblur="bankNo"/>
+    <input value="{{bankNo}}" type="number" placeholder="请输入银行卡号" placeholder-style="color:#ccc;" bindblur="bankNo"/>
   </view>
   <view class="middle-item line">
     <view class="middle-item-title"><span style="color:red">*</span>开户银行</view>
@@ -97,10 +97,13 @@
   </view> -->
 </view>
 <view class="business-license">
-  <text class="business-license-txt">{{photoType}}照片</text>
+  <text class="business-license-txt"><text style="color:red">*</text>{{photoType}}照片</text>
   <view class="icardidentityCard" bindtap="chooseimage">
+    <view class="{{delImgHide}}" catchtap="delImg">
+        <image class="del-img" mode='aspectFill' src="/images/clear.png"/>
+      </view>
     <image class="{{uploadImg}}" src="{{tempFilePaths }}" catchTap="chooseImageTap" mode="aspectFit"/>
-    <view wx:if="{{uploadTxt}}">上传{{photoType}}</view>
+    <view class="{{photoTxtHide}}">上传{{photoType}}</view>
   </view>
 </view>
 

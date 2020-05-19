@@ -35,7 +35,11 @@ Component({
     photo2:'',//身份证反面
     arrObj:[],
     flag1:'',
-    flag2:''
+    flag2:'',
+    photoTxtHide:'',
+    photoTxtHide2:'',
+    delImgHide:'delImgHide',
+    delImgHide2:'delImgHide2'
   },
 
   attached(){
@@ -59,9 +63,9 @@ Component({
       let img = '', img2 = '';
       for (let i = 0; i < merchantsInfoStorage[0].cInfo.length; i++) {
         if (merchantsInfoStorage[0].cInfo[i].certifyType == '04' && merchantsInfoStorage[0].cInfo[i].scanCopyPath) {
-          img = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg: 'upload-img', uploadTxt: false, flag1: 2 })
+          img = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg: 'upload-img', photoTxtHide: 'photoTxtHide', delImgHide:'', flag1: 2 })
         } else if (merchantsInfoStorage[0].cInfo[i].certifyType == '16' && merchantsInfoStorage[0].cInfo[i].scanCopyPath) {
-          img2 = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg2: 'upload-img', uploadTxt2: false, flag2: 2 })
+          img2 = merchantsInfoStorage[5].uri + merchantsInfoStorage[6].url + merchantsInfoStorage[0].cInfo[i].scanCopyPath; this.setData({ uploadImg2: 'upload-img', photoTxtHide2: 'photoTxtHide2', delImgHide2: '', flag2: 2 })
         } 
       }
 
@@ -153,21 +157,46 @@ Component({
           that.setData({
             tempFilePaths: res.tempFilePaths[0],
             uploadImg:'upload-img',
-            uploadTxt: false
+            photoTxtHide: 'photoTxtHide',
+            delImgHide:''
           })
-          let params = {
-            url: 'common/upload.do',
-            tempFilePaths: res.tempFilePaths[0]
-          };
-          console.log(params);
-          util.imgUpload(params).then((result) => {
-            let res = JSON.parse(result);
-            console.log(res)
-            let imgUrl = res.data.imagePath;
-            that.setData({ photo: imgUrl })
-            console.log(that.data.photo)
+          // let params = {
+          //   url: 'common/upload.do',
+          //   tempFilePaths: res.tempFilePaths[0]
+          // };
+          // console.log(params);
+          // util.imgUpload(params).then((result) => {
+          //   let res = JSON.parse(result);
+          //   console.log(res)
+          //   let imgUrl = res.data.imagePath;
+          //   that.setData({ photo: imgUrl })
+          //   console.log(that.data.photo)
+          // })
+          let flag = 'certAttribute1';
+          wx.getFileSystemManager().readFile({
+            filePath: res.tempFilePaths[0], //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: res => { //成功的回调
+              const params = {
+                url: 'comm/youTu',
+                data: {
+                  flag: flag,
+                  str: 'data:image/png;base64,' + res.data
+                }
+              };
+              util.http(params).then((result) => {
+                console.log(result)
+                if (result.result == "FAIL") {
+                  return util.tips('照片有误！')
+                }
+                that.setData({
+                  iDcard: result.cardId,
+                  representativeName: result.cardName,
+                  photo: result.imagePath
+                })
+              });
+            }
           })
-          
         }
       })
     },
@@ -197,74 +226,83 @@ Component({
           that.setData({
             tempFilePaths2: res.tempFilePaths[0],
             uploadImg2: 'upload-img',
-            uploadTxt2: false
+            photoTxtHide2: 'photoTxtHide2',
+            delImgHide2: ''
           })
-          let params = {
-            url: 'common/upload.do',
-            tempFilePaths: res.tempFilePaths[0]
-          };
-          util.imgUpload(params).then((result) => {
-            let res = JSON.parse(result);
-            console.log(res)
-            let imgUrl = res.data.imagePath;
-            that.setData({ photo2: imgUrl })
-            console.log(that.data.photo2)
+          // let params = {
+          //   url: 'common/upload.do',
+          //   tempFilePaths: res.tempFilePaths[0]
+          // };
+          // util.imgUpload(params).then((result) => {
+          //   let res = JSON.parse(result);
+          //   console.log(res)
+          //   let imgUrl = res.data.imagePath;
+          //   that.setData({ photo2: imgUrl })
+          //   console.log(that.data.photo2)
+          // })
+          let flag = 'certAttribute2';
+          wx.getFileSystemManager().readFile({
+            filePath: res.tempFilePaths[0], //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: res => { //成功的回调
+              const params = {
+                url: 'comm/youTu',
+                data: {
+                  flag: flag,
+                  str: 'data:image/png;base64,' + res.data
+                }
+              };
+              util.http(params).then((result) => {
+                console.log(result)
+                if (result.result == "FAIL") {
+                  return util.tips('照片有误！')
+                }
+                let cardValidDate = result.cardValidDate.replace(/\./g, '-');
+                let idTermStart = cardValidDate.substring(0, 10);
+                let idTermEnd = cardValidDate.substring(11, cardValidDate.length);
+                if (idTermEnd == '长期') {
+                  that.setData({
+                    startDate: '',
+                    endDate: '',
+                    photo2: result.imagePath,
+                    checked: true
+                  })
+                } else {
+                  that.setData({
+                    startDate: idTermStart,
+                    date:'',
+                    date2: '',
+                    endDate: idTermEnd,
+                    photo2: result.imagePath,
+                    checked: false
+                  })
+                }
+              });
+            }
           })
-          
         }
       })
     },
     nextFun() {//下一步
-      if (!util.nameVerifycation(this.data.representativeName)){
-        wx.showToast({
-          title: "请正确输入法人名字！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
-      }
-      if (!util.iDcard(this.data.iDcard)) {
-        wx.showToast({
-          title: "请正确输入身份证号码！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
-      }
-      // if (this.data.radioVal == 0 && (this.data.startDate == '日期选择' || this.data.endDate =='日期选择')) {
-      //   wx.showToast({
-      //     title: "请选择身份证有效期！",
-      //     icon: 'none',
-      //     duration: 3000
-      //   })
-      //   return;
-      // }
-      if (!util.nameVerifycation(this.data.name)) {
-        wx.showToast({
-          title: "请正确输入联系人名字！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
-      }
-      if (!util.mobile(this.data.mobile)) {
-        wx.showToast({
-          title: "请正确输入手机号！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
-      }
+      // if (util.nameVerifycation(this.data.name)) { util.tips('请正确输入联系人名字！'); return; }
+      if (!this.data.name) { util.tips('请输入联系人名字！'); return; }
+      if (!util.mobile(this.data.mobile)) { util.tips('请正确输入手机号！'); return; }
+      if (!this.data.photo) { util.tips('请上传身份证正面照！'); return; }
+      if (!this.data.photo2) { util.tips('请上传身份证反面照！'); return; }
+      if (!util.nameVerifycation(this.data.representativeName)){util.tips('请正确输入法人名字！'); return;}
+      if (!util.iDcard(this.data.iDcard)) {util.tips('请正确输入身份证号码！'); return;}
+      if (!this.data.endDate) { util.tips('请选择身份证有效期！'); return; }
+
       wx.setStorageSync('legalPersonImgStorage', [
         { certifyType: '04', scanCopyPath: this.data.tempFilePaths == (undefined || 'images/add.png') ? '' : this.data.photo, certifyNo: this.data.iDcard, flag: this.data.tempFilePaths == (undefined || 'images/add.png') ? 0 : (this.data.flag1 == 2 ? 2 : 1)},
         { certifyType: '16', scanCopyPath: this.data.tempFilePaths2 == (undefined || 'images/add.png') ? '' : this.data.photo2, certifyNo: '', flag: this.data.tempFilePaths2 == (undefined || 'images/add.png') ? 0 : (this.data.flag2 == 2 ? 2 : 1) }
       ]);
+      // console.log(this.data.representativeName, this.data.iDcard, this.data.name, this.data.mobile, this.data.photo, this.data.photo2);
       wx.setStorageSync('legalPersonStorage', {
          representativeName: this.data.representativeName ,
-        // representativeName: wx.getStorageSync('legalPersonStorage').representativeName == undefined ? this.data.representativeName : wx.getStorageSync('legalPersonStorage').representativeName,
          representativeCertNo: this.data.iDcard ,
-        //  idTermStart : this.data.startDate ,
-        //  idTermEnd: this.data.radioVal == 1?"长期": this.data.endDate,
+         idTermStart : this.data.startDate ,
+         idTermEnd: this.data.radioVal == 1?"长期": this.data.endDate,
          contactName: this.data.name,
          contactMobile: this.data.mobile
       })
@@ -292,12 +330,7 @@ Component({
     representativeName(e) {//验证法人名字
       let val = util.nameVerifycation(e.detail.value);
       if (!val) {
-        wx.showToast({
-          title: "请正确输入法人名字！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
+        util.tips('请正确输入法人名字！'); return;
       } else {
         this.setData({ representativeName: e.detail.value });
       }
@@ -305,12 +338,7 @@ Component({
     iDcard(e) {//身份证号码
       let val = util.iDcard(e.detail.value);
       if (!val) {
-        wx.showToast({
-          title: "请正确输入身份证号码！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
+        util.tips('请正确输入身份证号码！'); return;
       } else {
         this.setData({ iDcard: e.detail.value });
       }
@@ -318,21 +346,28 @@ Component({
     nameVerifycation(e) {//联系人名字
       let val = util.nameVerifycation(e.detail.value);
       if (!val) {
-        wx.showToast({
-          title: "请正确输入联系人名字！",
-          icon: 'none',
-          duration: 3000
-        })
-        return;
+        util.tips('请正确输入联系人名字！'); return;
       } else {
         this.setData({ name: e.detail.value });
       }
     },
-    // ohShitfadeOut() {//错误提示框
-    //   let fadeOutTimeout = setTimeout(() => {
-    //     this.setData({ popErrorMsg: '' });
-    //     clearTimeout(fadeOutTimeout);
-    //   }, 3000);
-    // },
+    delImg(e) {
+      this.setData({
+        uploadImg: '',
+        photoTxtHide: '',
+        photo: '', 
+        delImgHide: 'delImgHide',
+        tempFilePaths: 'images/add.png'
+      });
+    },
+    delImg2(e) {
+      this.setData({
+        uploadImg2: '',
+        photoTxtHide2: '', 
+        photo2: '', 
+        delImgHide2: 'delImgHide',
+        tempFilePaths2: 'images/add.png'
+      });
+    }
   }
 })
